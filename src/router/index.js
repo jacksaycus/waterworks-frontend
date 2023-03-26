@@ -9,7 +9,11 @@ const routes = [
     name: 'Dashboard',
     component: () => import('@/components/aio/dashboard/Dashboard'),
   },
-
+  {
+    path: '/pms',
+    name: 'pmsDashboard',
+    component: () => import('@/components/pms/dashboard/Dashboard'),
+  },
   {
     path: '*',
     component: () => import('@/views/NotFound'),

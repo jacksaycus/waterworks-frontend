@@ -368,7 +368,7 @@ export default {
 }
 // 대시보드 사이즈 및 배경
 .dashboard-container {
-  background-image: url('../../../assets/dashboard_img/dashboard_background.png');
+  background-image: url('../../../assets/pms/dashboard_img/dashboard_background.png');
   background-size: cover;
   width: 1503px;
   height: 990px;

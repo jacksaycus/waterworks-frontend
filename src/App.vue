@@ -1,15 +1,15 @@
 <template>
   <v-app :class='this.$store.getters["aio/backgroundImage"]'>
-    <v-overlay :value="this.$store.state.overlay" z-index='9999'>
+    <!-- <v-overlay :value="this.$store.state.overlay" z-index='9999'>
       <v-progress-circular
         indeterminate
         size='64'
       ></v-progress-circular>
-    </v-overlay>
+    </v-overlay> -->
     <Drawer style="z-index:99999;"/>
     <AppBar/>
     <v-main :style="this.$store.state.aio.css.content">
-      <router-view></router-view>
+      <router-view class="view"></router-view>
     </v-main>
 </v-app>
 </template>
@@ -30,6 +30,6 @@ export default {
   
 };
 </script>
-<style lang="scss">
+<!-- <style lang="scss">
 @import "App.scss";
-</style>
+</style> -->

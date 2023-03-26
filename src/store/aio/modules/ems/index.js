@@ -1,6 +1,6 @@
 // ems store
 import axios from 'axios'
-import { DEV_SERVER } from '@/store'
+import { DEV_SERVER } from '@/store/aio/modules/aio'
 import { util } from '@/service/utils'
 
 const URL = {

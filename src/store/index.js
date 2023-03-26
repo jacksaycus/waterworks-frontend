@@ -17,6 +17,7 @@ import sedimentation from './aio/modules/sedimentation'
 import disinfection from './aio/modules/disinfection'
 import ems from './aio/modules/ems'
 import pms from './aio/modules/pms'
+import PmsModule from './pms'
 
 Vue.use(Vuex)
 Vue.use(common)
@@ -27,18 +28,21 @@ Vue.use(vueMoment, {
 
 export default new Vuex.Store({
   modules: {
-    drawer,
-    aio,
-    dialog,
-    receiving,
-    coagulants,
-    filter,
-    gac,
-    mixing,
-    ozone,
-    sedimentation,
-    disinfection,
-    ems,
-    pms,
-  }
+        drawer,
+        aio,
+        dialog,
+        receiving,
+        coagulants,
+        filter,
+        gac,
+        mixing,
+        ozone,
+        sedimentation,
+        disinfection,
+        ems,
+        pms,
+
+        PmsModule,
+    },
+    
 });

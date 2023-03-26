@@ -153,7 +153,7 @@ export default {
           text: '대시보드',
           model: false,
           route: '/',
-          authority: USER_ROLE.USER,
+          // authority: USER_ROLE.USER,
         },
         {
           icon: '$vuetify.icons.EMSAI',
@@ -325,8 +325,8 @@ export default {
           icon: '$vuetify.icons.AoDashboard',
           text: '대시보드',
           model: false,
-          route: '/',
-          authority: USER_ROLE.USER,
+          route: '/pms',
+          // authority: USER_ROLE.USER,
         },
         {
           icon: '$vuetify.icons.AoRw',

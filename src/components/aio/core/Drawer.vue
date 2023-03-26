@@ -521,6 +521,7 @@ export default {
      */
     goPMSURL: function(url) {
       console.log(url)
+      this.$router.replace('/pms');
     //   if (this.$store.state.login.user.accessToken !== null) {
     //     window.open(SERVICE_URL.PMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
     //   } else {
@@ -529,7 +530,7 @@ export default {
     },
   },
   created () {
-    console.log(this.$route.query.token)
+    //console.log(this.$route.query.token)
     // EMS & PMS로 부터 전달받은 토큰이 있는지 확인하여 'X-ACCESS-TOKEN' 헤더의 값으로 설정
     // if (this.$route.query.token !== undefined) {
     //   console.log(this.$route.query.token)
