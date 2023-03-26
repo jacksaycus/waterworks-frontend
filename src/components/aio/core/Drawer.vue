@@ -1,21 +1,21 @@
 <template>
-  <div class="drawer-container">
-    <!-- Drawer 손잡이 -->
-    <div v-if="$store.state.drawer.drawer.handler" class="drawer-handler" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
-      <div class="tri"></div>
-    </div>
-    <!-- Drawer 메뉴 -->
-    <div :style="{'width': drawerWidth}" style="height: 100%; display:flex;" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
-      <!-- 메인 메뉴(메인, 자율운영, 스마트EMS, 스마트PMS, 지능형 영상, 운영관리) -->
-      <div class="left-main-menu-container" :style="{'width': leftMenuWidth}">
-        <div class="logo-container" v-show="leftMenuWidth !== '15px'">
-          <div class="logo-icon"></div>
-        </div>
-        <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(0)">
-          <div class="left-main-menu-item-icon dashboard" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}"></div>
-          <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}">메인</div>
-        </div>
-        <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 2}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(2)">
+    <div class="drawer-container">
+      <!-- Drawer 손잡이 -->
+      <div v-if="$store.state.drawer.drawer.handler" class="drawer-handler" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
+        <div class="tri"></div>
+      </div>
+      <!-- Drawer 메뉴 -->
+      <div :style="{'width': drawerWidth}" style="height: 100%; display:flex;" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
+        <!-- 메인 메뉴(메인, 자율운영, 스마트EMS, 스마트PMS, 지능형 영상, 운영관리) -->
+        <div class="left-main-menu-container" :style="{'width': leftMenuWidth}">
+          <div class="logo-container" v-show="leftMenuWidth !== '15px'">
+            <div class="logo-icon"></div>
+          </div>
+          <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(0)">
+            <div class="left-main-menu-item-icon dashboard" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}"></div>
+            <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}">메인</div>
+          </div>
+          <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 2}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(2)">
           <div class="left-main-menu-item-icon ao" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 2}"></div>
           <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 2}">자율운영</div>
         </div>
@@ -87,7 +87,7 @@
                         <v-list-item-title>
                           {{ child.text }}
                         </v-list-item-title>
-                      </v-list-item-content>
+                    </v-list-item-content>
                     </v-list-item>
                   </template>
                 </v-list-group>
@@ -107,7 +107,7 @@
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item
-                  v-else-if="item.authority >= $store.state.login.user.authority"
+                  
                   :key="item.text"
                   :to="item.route"
                   link
@@ -122,7 +122,7 @@
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
-              </template>
+            </template>
             </v-list>
           </div>
         </v-navigation-drawer>
@@ -221,7 +221,7 @@
                   @click="goEMSURL(item.route)"
                   link
                 >
-                  <v-list-item-action>
+                <v-list-item-action>
                     <v-icon>{{ item.icon }}</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
@@ -282,14 +282,14 @@
                       </v-list-item-action>
                       <v-list-item-content>
                         <v-list-item-title>
-                          {{ child.text }}
+                            {{ child.text }}
                         </v-list-item-title>
                       </v-list-item-content>
                     </v-list-item>
                   </template>
                 </v-list-group>
                 <v-list-item
-                  v-else-if="item.authority >= $store.state.login.user.authority"
+                  
                   :key="item.text"
                   @click="goPMSURL(item.route)"
                   link
@@ -307,7 +307,7 @@
             </v-list>
           </div>
         </v-navigation-drawer>
-      </div>
+    </div>
       <!-- 운영관리 메뉴(알람이력, 성능모니터링, 알람관리, 사용자 관리, 로그인 이력, 네트워크 설정) -->
       <div v-else class="right-menu-container" :style="{ 'width': rightMenuWidth }" @mouseleave="rightMenuMouseOut">
         <v-navigation-drawer
@@ -362,7 +362,7 @@
                   </template>
                 </v-list-group>
                 <v-list-item
-                  v-else-if="item.authority >= $store.state.login.user.authority"
+                
                   :key="item.text"
                   :to="item.route"
                   link
@@ -384,17 +384,14 @@
     </div>
 
     <div style="position:absolute; display:none">
-      <form ref="form">
-        <input name="token" v-model="$store.state.login.user.accessToken">
-      </form>
+     
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import { SERVICE_URL } from '@/store'
-
+import { SERVICE_URL } from '@/store/aio/modules/aio'
 export default {
   name: 'Drawer',
   data: () => ({
@@ -512,11 +509,11 @@ export default {
      */
     goEMSURL: function(url) {
       console.log(url)
-      if (this.$store.state.login.user.accessToken !== null) {
-        window.open(SERVICE_URL.EMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
-      } else {
-        window.open(SERVICE_URL.EMS + url, "_self")
-      }
+    //   if (this.$store.state.login.user.accessToken !== null) {
+    //     window.open(SERVICE_URL.EMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
+    //   } else {
+    //     window.open(SERVICE_URL.EMS + url, "_self")
+    //   }
     },
     /**
      * PMS 메뉴로 이동하는 함수
@@ -524,26 +521,26 @@ export default {
      */
     goPMSURL: function(url) {
       console.log(url)
-      if (this.$store.state.login.user.accessToken !== null) {
-        window.open(SERVICE_URL.PMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
-      } else {
-        window.open(SERVICE_URL.PMS + url, "_self")
-      }
+    //   if (this.$store.state.login.user.accessToken !== null) {
+    //     window.open(SERVICE_URL.PMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
+    //   } else {
+    //     window.open(SERVICE_URL.PMS + url, "_self")
+    //   }
     },
   },
   created () {
     console.log(this.$route.query.token)
     // EMS & PMS로 부터 전달받은 토큰이 있는지 확인하여 'X-ACCESS-TOKEN' 헤더의 값으로 설정
-    if (this.$route.query.token !== undefined) {
-      console.log(this.$route.query.token)
-      this.$store.state.login.user.accessToken = this.$route.query.token
-      axios.defaults.headers.common['X-ACCESS-TOKEN'] = this.$route.query.token
-      Promise.all([
-        this.$store.dispatch('login/LOGIN_PUT')
-        // 필요시 토큰으로 유저 정보 요청
-      ]).finally(() => {
-      })
-    }
+    // if (this.$route.query.token !== undefined) {
+    //   console.log(this.$route.query.token)
+    //   this.$store.state.login.user.accessToken = this.$route.query.token
+    //   axios.defaults.headers.common['X-ACCESS-TOKEN'] = this.$route.query.token
+    //   Promise.all([
+    //     this.$store.dispatch('login/LOGIN_PUT')
+    //     // 필요시 토큰으로 유저 정보 요청
+    //   ]).finally(() => {
+    //   })
+    // }
   }
 }
 </script>
@@ -573,7 +570,7 @@ export default {
       .logo-icon {
         width: 55px;
         height: 25px;
-        background-image: url('../../assets/drawer/icon_logo.png');
+        background-image: url('../../../assets/drawer/icon_logo.png');
         background-size: 100%;
       }
     }
@@ -613,101 +610,100 @@ export default {
     .left-main-menu-item-icon.dashboard {
       width: 33px;
       height: 24px;
-      background-image: url('../../assets/drawer/icon_main_menu_dashboard.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_dashboard.png');
       background-size: 100%;
     }
     // 메인 메뉴 대시보드 아이콘(선택된)
     .left-main-menu-item-icon.dashboard.selected {
       width: 33px;
       height: 24px;
-      background-image: url('../../assets/drawer/icon_main_menu_dashboard_selected.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_dashboard_selected.png');
       background-size: 100%;
     }
     // 메인 메뉴 인공지능 아이콘
     .left-main-menu-item-icon.iAi {
       width: 27px;
       height: 27px;
-      background-image: url('../../assets/drawer/icon_main_menu_iAi.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_iAi.png');
       background-size: 100%;
     }
     // 메인 메뉴 인공지능 아이콘(선택된)
     .left-main-menu-item-icon.iAi.selected {
       width: 27px;
       height: 27px;
-      background-image: url('../../assets/drawer/icon_main_menu_iAi_selected.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_iAi_selected.png');
       background-size: 100%;
     }
     // 메인 메뉴 아이콘
     .left-main-menu-item-icon.ao {
       width: 27px;
       height: 27px;
-      background-image: url('../../assets/drawer/icon_main_menu_ao.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_ao.png');
       background-size: 100%;
     }
     // 메인 메뉴 아이콘(선택된)
     .left-main-menu-item-icon.ao.selected {
       width: 27px;
       height: 27px;
-      background-image: url('../../assets/drawer/icon_main_menu_ao_selected.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_ao_selected.png');
       background-size: 100%;
     }
     // EMS 아이콘
     .left-main-menu-item-icon.ems {
       width: 33px;
       height: 30px;
-      background-image: url('../../assets/drawer/icon_main_menu_ems.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_ems.png');
       background-size: 100%;
     }
     // EMS 아이콘(선택된)
     .left-main-menu-item-icon.ems.selected {
       width: 33px;
       height: 30px;
-      background-image: url('../../assets/drawer/icon_main_menu_ems_selected.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_ems_selected.png');
       background-size: 100%;
     }
     // PMS 아이콘
     .left-main-menu-item-icon.pms {
       width: 33px;
       height: 30px;
-      background-image: url('../../assets/drawer/icon_main_menu_pms.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_pms.png');
       background-size: 100%;
     }
     // PMS 아이콘(선택된)
     .left-main-menu-item-icon.pms.selected {
       width: 33px;
       height: 30px;
-      background-image: url('../../assets/drawer/icon_main_menu_pms_selected.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_pms_selected.png');
       background-size: 100%;
     }
     // 시스템 아이콘
     .left-main-menu-item-icon.system {
       width: 33px;
       height: 32px;
-      background-image: url('../../assets/drawer/icon_main_menu_system.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_system.png');
       background-size: 100%;
     }
     // 시스템 아이콘(선택된)
     .left-main-menu-item-icon.system.selected {
       width: 33px;
       height: 32px;
-      background-image: url('../../assets/drawer/icon_main_menu_system_selected.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_system_selected.png');
       background-size: 100%;
     }
     // CCTV 아이콘
     .left-main-menu-item-icon.cctv {
       width: 41px;
       height: 28px;
-      background-image: url('../../assets/drawer/icon_main_menu_cctv.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_cctv.png');
     }
     // CCTV 아이콘(선택된)
     .left-main-menu-item-icon.cctv.selected {
       width: 41px;
       height: 28px;
-      background-image: url('../../assets/drawer/icon_main_menu_cctv_selected.png');
+      background-image: url('../../../assets/drawer/icon_main_menu_cctv_selected.png');
     }
   }
 }
-
 // veutify v-navigation-drawer 커스터마이징
 .v-navigation-drawer {
   background-image: linear-gradient(91deg, rgba(11, 50, 95, 0.7) 1%, #021f3b 96%);
@@ -748,7 +744,6 @@ export default {
 .blank:before{
   content: "";
 }
-
 // Drawer 손잡이
 .drawer-handler {
   display:flex;
@@ -774,7 +769,6 @@ export default {
     border-bottom: 5px solid transparent;
   }
 }
-
 // Drawer 2단 컨테이너
 .right-menu-container {
   height: 100%;
@@ -793,14 +787,14 @@ export default {
   .right-menu-header-icon.ao {
     width: 17px;
     height: 16px;
-    background-image: url('../../assets/drawer/icon_right_menu_ao.png');
+    background-image: url('../../../assets/drawer/icon_right_menu_ao.png');
     background-size: 100%;
   }
   // 헤더 아이콘(시스템)
   .right-menu-header-icon.sys {
     width: 17px;
     height: 16px;
-    background-image: url('../../assets/drawer/icon_right_menu_sys.png');
+    background-image: url('../../../assets/drawer/icon_right_menu_sys.png');
     background-size: 100%;
   }
   // 헤더 텍스트
@@ -809,6 +803,4 @@ export default {
     color: #ffffff;
   }
 }
-
-
 </style>

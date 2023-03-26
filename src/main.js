@@ -6,13 +6,6 @@ import vuetify from './plugins/vuetify'
 import numeral from 'numeral'
 import numFormat from 'vue-filter-number-format'
 import Vuesax from 'vuesax';
-
-// import Buefy from 'buefy'
-// import 'buefy/dist/buefy.css'
-
-// import './style.css';
-
-// Vue.use(Buefy);
 import Highcharts from 'highcharts'
 import HighchartsMore from "highcharts/highcharts-more"
 import Exporting from "highcharts/modules/exporting"

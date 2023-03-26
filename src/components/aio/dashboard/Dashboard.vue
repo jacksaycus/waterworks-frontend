@@ -8,7 +8,7 @@
     <DashboardInfo/>
     <!-- 라인(빨강, 파랑) & 물 흐름 컴포넌트 -->
     <WaterFlow/>
-
+    
     <!-- 공정별 건물 배치 -->
     <div class="map-contents">
       <!-- 탈수기동 건물-->
@@ -21,177 +21,177 @@
       <div class="five-building"></div>
 
       <!-- 착수 건물 -->
-      <div class="map-contents__splashdown" :class="[this.$store.state.selectedBuildingIndex === 1 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 1 ? 'opacity50' : '']">
+      <div class="map-contents__splashdown" :class="[this.$store.state.selectedBuildingIndex === 1 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 1 ? 'opacity50' : '']">
         <div class="splashdown-text" @mouseover="onBuildingMouseover(1)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(1)">착수</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 1 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/splashdown.png" usemap="#splashdown_map"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 1 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_splashdown.png" usemap="#over_splashdown_map"/>
-        <img class="aurora_splashdown" :class="[this.$store.state.selectedBuildingIndex === 1 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 1 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/splashdown.png" usemap="#splashdown_map"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 1 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_splashdown.png" usemap="#over_splashdown_map"/>
+        <img class="aurora_splashdown" :class="[this.$store.state.aio.selectedBuildingIndex === 1 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div>
       <!-- 착수 회전 아이콘 -->
-      <div class="cube splashdown_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube splashdown_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.receiving.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
-            <div class="cube__back_logo back_splashdown"></div>
+          <div :class="[this.$store.state.receiving.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+          <div class="cube__back_logo back_splashdown"></div>
           </div>
         </div>
       </div>
 
       <!-- 약품 건물 -->
-      <div class="map-contents__drug" :class="[this.$store.state.selectedBuildingIndex === 2 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 2 ? 'opacity50' : '']">
+      <div class="map-contents__drug" :class="[this.$store.state.aio.selectedBuildingIndex === 2 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 2 ? 'opacity50' : '']">
         <div class="drug-text" @mouseover="onBuildingMouseover(2)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(2)">약품</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 2 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/drug.png" usemap="#drug_map"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 2 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_drug.png" usemap="#over_drug_map"/>
-        <img class="aurora_drug" :class="[this.$store.state.selectedBuildingIndex === 2 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 2 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/drug.png" usemap="#drug_map"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 2 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_drug.png" usemap="#over_drug_map"/>
+        <img class="aurora_drug" :class="[this.$store.state.aio.selectedBuildingIndex === 2 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div>
       <!-- 약품 회전 아이콘 -->
-      <div class="cube drug_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube drug_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.coagulants.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
-            <div class="cube__back_logo back_drug"></div>
+          <div :class="[this.$store.state['coagulants/latest.operation_mode'] ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+          <div class="cube__back_logo back_drug"></div>
           </div>
         </div>
       </div>
 
       <!-- 혼화응집 & 침전 건물 -->
-      <div class="map-contents__sedimentation-mix" :class="[this.$store.state.selectedBuildingIndex === 3 || this.$store.state.selectedBuildingIndex === 4 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 3 && this.$store.state.selectedBuildingIndex !== 4 ? 'opacity50' : '']">
-        <div class="sedimentation-text" :class="[this.$store.state.selectedBuildingIndex === 3 ? 'opacity50': '']" @mouseover="onBuildingMouseover(4)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(4)">침전</div>
-        <div class="mix-text" :class="[this.$store.state.selectedBuildingIndex === 4 ? 'opacity50': '']" @mouseover="onBuildingMouseover(3)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(3)">혼화응집</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 3 || this.$store.state.selectedBuildingIndex === 4 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/sedimentation_mix.png"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 3 || this.$store.state.selectedBuildingIndex === 4 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_sedimentation_mix.png"/>
-        <img class="aurora_sedimentation" :class="[this.$store.state.selectedBuildingIndex === 4 ? 'building-unvisible': 'building-visible', this.$store.state.selectedBuildingIndex === 3 ? 'opacity0' : '']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
-        <img class="aurora_mix" :class="[this.$store.state.selectedBuildingIndex === 3 ? 'building-unvisible': 'building-visible', this.$store.state.selectedBuildingIndex === 4 ? 'opacity0' : '']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+      <div class="map-contents__sedimentation-mix" :class="[this.$store.state.aio.selectedBuildingIndex === 3 || this.$store.state.aio.selectedBuildingIndex === 4 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 3 && this.$store.state.aio.selectedBuildingIndex !== 4 ? 'opacity50' : '']">
+        <div class="sedimentation-text" :class="[this.$store.state.aio.selectedBuildingIndex === 3 ? 'opacity50': '']" @mouseover="onBuildingMouseover(4)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(4)">침전</div>
+        <div class="mix-text" :class="[this.$store.state.aio.selectedBuildingIndex === 4 ? 'opacity50': '']" @mouseover="onBuildingMouseover(3)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(3)">혼화응집</div>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 3 || this.$store.state.aio.selectedBuildingIndex === 4 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/sedimentation_mix.png"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 3 || this.$store.state.aio.selectedBuildingIndex === 4 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_sedimentation_mix.png"/>
+        <img class="aurora_sedimentation" :class="[this.$store.state.aio.selectedBuildingIndex === 4 ? 'building-unvisible': 'building-visible', this.$store.state.aio.selectedBuildingIndex === 3 ? 'opacity0' : '']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="aurora_mix" :class="[this.$store.state.aio.selectedBuildingIndex === 3 ? 'building-unvisible': 'building-visible', this.$store.state.aio.selectedBuildingIndex === 4 ? 'opacity0' : '']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div>
       <!-- 혼화응집 회전 아이콘 -->
-      <div class="cube mix_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube mix_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.mixing.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
-            <div class="cube__back_logo back_mix"></div>
+          <div :class="[this.$store.state.mixing.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+          <div class="cube__back_logo back_mix"></div>
           </div>
         </div>
       </div>
       <!-- 침전 회전 아이콘 -->
-      <div class="cube sedimentation_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube sedimentation_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.sedimentation.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
-            <div class="cube__back_logo back_sedimentation"></div>
+          <div :class="[this.$store.state.sedimentation.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+          <div class="cube__back_logo back_sedimentation"></div>
           </div>
         </div>
       </div>
 
       <!-- 여과 건물 -->
-      <div class="map-contents__percolation" :class="[this.$store.state.selectedBuildingIndex === 5 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 5 ? 'opacity50' : '']">
+      <div class="map-contents__percolation" :class="[this.$store.state.aio.selectedBuildingIndex === 5 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 5 ? 'opacity50' : '']">
         <div class="percolation-text" @mouseover="onBuildingMouseover(5)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(5)">여과</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 5 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/percolation.png" usemap="#percolation_map"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 5 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_percolation.png" usemap="#percolation_over_map"/>
-        <img class="aurora_percolation" :class="[this.$store.state.selectedBuildingIndex === 5 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 5 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/percolation.png" usemap="#percolation_map"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 5 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_percolation.png" usemap="#percolation_over_map"/>
+        <img class="aurora_percolation" :class="[this.$store.state.aio.selectedBuildingIndex === 5 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div>
       <!-- 여과 회전 아이콘 -->
-      <div class="cube percolation_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube percolation_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.filter.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
-            <div class="cube__back_logo back_percolation"></div>
+          <div :class="[this.$store.state.filter.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+          <div class="cube__back_logo back_percolation"></div>
           </div>
         </div>
       </div>
 
       <!-- GAC 여과 건물 -->
-      <div class="map-contents__gac" :class="[this.$store.state.selectedBuildingIndex === 6 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 6 ? 'opacity50' : '']">
+      <div class="map-contents__gac" :class="[this.$store.state.aio.selectedBuildingIndex === 6 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 6 ? 'opacity50' : '']">
         <div class="gac-text" @mouseover="onBuildingMouseover(6)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(6)">GAC여과</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 6 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/GAC.png" usemap="#gac_map"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 6 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_gac.png" usemap="#over_gac_map"/>
-        <img class="aurora_gac" :class="[this.$store.state.selectedBuildingIndex === 6 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 6 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/GAC.png" usemap="#gac_map"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 6 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_gac.png" usemap="#over_gac_map"/>
+        <img class="aurora_gac" :class="[this.$store.state.aio.selectedBuildingIndex === 6 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div>
       <!-- GAC 회전 여과 아이콘 -->
-      <div class="cube gac_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube gac_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.gac.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
-            <div class="cube__back_logo back_gac"></div>
+          <div :class="[this.$store.state.gac.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+          <div class="cube__back_logo back_gac"></div>
           </div>
         </div>
-      </div>
+      </div>  
 
       <!-- 소독 건물 -->
-      <div class="map-contents__disinfection" :class="[this.$store.state.selectedBuildingIndex === 7 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 7 ? 'opacity50' : '']">
+      <div class="map-contents__disinfection" :class="[this.$store.state.aio.selectedBuildingIndex === 7 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 7 ? 'opacity50' : '']">
         <div class="disinfection-text" @mouseover="onBuildingMouseover(7)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(7)">소독</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 7 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/disinfection.png" usemap="#disinfection_map"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 7 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_disinfection.png" usemap="#over_disinfection_map"/>
-        <img class="aurora_disinfection" :class="[this.$store.state.selectedBuildingIndex === 7 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 7 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/disinfection.png" usemap="#disinfection_map"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 7 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_disinfection.png" usemap="#over_disinfection_map"/>
+        <img class="aurora_disinfection" :class="[this.$store.state.aio.selectedBuildingIndex === 7 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div>
       <!-- 소독 회전 아이콘 -->
-      <div class="cube disinfection_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube disinfection_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.getters['disinfection/isAiOperationMode'] ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
-            <div class="cube__back_logo back_disinfection"></div>
+          <div :class="[this.$store.getters['disinfection/isAiOperationMode'] ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+          <div class="cube__back_logo back_disinfection"></div>
           </div>
         </div>
       </div>
 
       <!-- 펌프 건물 -->
-      <div class="map-contents__pump" :class="[this.$store.state.selectedBuildingIndex === 8 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 8 ? 'opacity50' : '']">
+      <div class="map-contents__pump" :class="[this.$store.state.aio.selectedBuildingIndex === 8 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 8 ? 'opacity50' : '']">
         <div class="pump-text" @mouseover="onBuildingMouseover(8)" @mouseout="this.onBuildingMouseout" @click="onClickSending">송수</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 8 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/pump.png"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 8 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_pump.png"/>
-        <img class="aurora_pump" :class="[this.$store.state.selectedBuildingIndex === 8 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 8 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/pump.png"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 8 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_pump.png"/>
+        <img class="aurora_pump" :class="[this.$store.state.aio.selectedBuildingIndex === 8 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div>
       <!-- 펌프 회전 아이콘 -->
-      <div class="cube pump_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube pump_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.isSelectedMainMenuIndex7AiOn ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+            <div :class="[this.$store.state.aio.isSelectedMainMenuIndex7AiOn ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
             <div class="cube__back_logo back_pump"></div>
           </div>
         </div>
       </div>
       <!-- 탈수기동 건물 -->
-      <!-- <div class="map-contents__concentration" :class="[this.$store.state.selectedBuildingIndex === 9 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 9 ? 'opacity50' : '']">
+      <!-- <div class="map-contents__concentration" :class="[this.$store.state.aio.selectedBuildingIndex === 9 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 9 ? 'opacity50' : '']">
         <div class="concentration-text" @mouseover="onBuildingMouseover(9)" @mouseout="this.onBuildingMouseout">탈수기동</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 9 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/concentration.png"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 9 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_concentration.png"/>
-        <img class="aurora_concentration" :class="[this.$store.state.selectedBuildingIndex === 9 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 9 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/concentration.png"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 9 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_concentration.png"/>
+        <img class="aurora_concentration" :class="[this.$store.state.aio.selectedBuildingIndex === 9 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div> -->
       <!-- 탈수기동 아이콘 -->
-      <!-- <div class="cube concentration_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <!-- <div class="cube concentration_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.isSelectedMainMenuIndex9AiOn ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+            <div :class="[this.$store.state.aio.isSelectedMainMenuIndex9AiOn ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
             <div class="cube__back_logo back_concentration"></div>
           </div>
         </div>
       </div> -->
 
       <!-- 농축조 건물 -->
-      <!-- <div class="map-contents__dehydration" :class="[this.$store.state.selectedBuildingIndex === 10 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 10 ? 'opacity50' : '']">
+      <!-- <div class="map-contents__dehydration" :class="[this.$store.state.aio.selectedBuildingIndex === 10 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 10 ? 'opacity50' : '']">
         <div class="dehydration-text" @mouseover="onBuildingMouseover(10)" @mouseout="this.onBuildingMouseout">농축조</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 10 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/dehydration.png"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 10 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_dehydration.png"/>
-        <img class="aurora_dehydration" :class="[this.$store.state.selectedBuildingIndex === 10 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 10 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/dehydration.png"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 10 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_dehydration.png"/>
+        <img class="aurora_dehydration" :class="[this.$store.state.aio.selectedBuildingIndex === 10 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div> -->
       <!-- 농축조 아이콘 -->
-      <!-- <div class="cube dehydration_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <!-- <div class="cube dehydration_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
-            <div :class="[this.$store.state.isSelectedMainMenuIndex9AiOn ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
+            <div :class="[this.$store.state.aio.isSelectedMainMenuIndex9AiOn ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
             <div class="cube__back_logo back_dehydration"></div>
           </div>
         </div>
       </div>  -->
 
       <!-- 오존 건물 -->
-      <div class="map-contents__o3" :class="[this.$store.state.selectedBuildingIndex === 11 ? 'zIndex10': '', this.$store.state.selectedBuildingIndex > 0 && this.$store.state.selectedBuildingIndex !== 11 ? 'opacity50' : '']">
+      <div class="map-contents__o3" :class="[this.$store.state.aio.selectedBuildingIndex === 11 ? 'zIndex10': '', this.$store.state.aio.selectedBuildingIndex > 0 && this.$store.state.aio.selectedBuildingIndex !== 11 ? 'opacity50' : '']">
         <div class="o3-text" @mouseover="onBuildingMouseover(11)" @mouseout="this.onBuildingMouseout" @click="$routingByIndex(11)">오존</div>
-        <img class="down" :class="[this.$store.state.selectedBuildingIndex === 11 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_img/o3.png"/>
-        <img class="up" :class="[this.$store.state.selectedBuildingIndex === 11 ? 'building-visible': 'building-unvisible']" src="../../assets/dashboard_img/over_o3.png"/>
-        <img class="aurora_o3" :class="[this.$store.state.selectedBuildingIndex === 11 ? 'building-unvisible': 'building-visible']" src="../../assets/dashboard_icons/bottom-aurora.png"/>
+        <img class="down" :class="[this.$store.state.aio.selectedBuildingIndex === 11 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_img/o3.png"/>
+        <img class="up" :class="[this.$store.state.aio.selectedBuildingIndex === 11 ? 'building-visible': 'building-unvisible']" src="../../../assets/dashboard_img/over_o3.png"/>
+        <img class="aurora_o3" :class="[this.$store.state.aio.selectedBuildingIndex === 11 ? 'building-unvisible': 'building-visible']" src="../../../assets/dashboard_icons/bottom-aurora.png"/>
       </div>
       <!-- 오존 회전 아이콘 -->
-      <div class="cube o3_cube" :class="[this.$store.state.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
+      <div class="cube o3_cube" :class="[this.$store.state.aio.selectedBuildingIndex > 0 ? 'building-unvisible': 'building-visible']">
         <div class="cube__inner">
           <div class="cube__noimg">
             <div :class="[this.$store.state.ozone.latest.operation_mode ? 'cube__front_logo--on' : 'cube__front_logo--off']"></div>
@@ -201,55 +201,55 @@
       </div>
     </div>
     <!-- 착수 팝업 -->
-    <Popup1 v-if="this.$store.state.selectedBuildingIndex === 1"/>
+    <Popup1 v-if="this.$store.state.aio.selectedBuildingIndex === 1"/>
     <!-- 약품 팝업 -->
-    <Popup2 v-if="this.$store.state.selectedBuildingIndex === 2"/>
+    <Popup2 v-if="this.$store.state.aio.selectedBuildingIndex === 2"/>
     <!-- 혼화응집 팝업 -->
-    <Popup3 v-if="this.$store.state.selectedBuildingIndex === 3"/>
+    <Popup3 v-if="this.$store.state.aio.selectedBuildingIndex === 3"/>
     <!-- 침전 팝업 -->
-    <Popup4 v-if="this.$store.state.selectedBuildingIndex === 4"/>
+    <Popup4 v-if="this.$store.state.aio.selectedBuildingIndex === 4"/>
     <!-- 여과 팝업 -->
-    <Popup5 v-if="this.$store.state.selectedBuildingIndex === 5"/>
+    <Popup5 v-if="this.$store.state.aio.selectedBuildingIndex === 5"/>
     <!-- GAC여과 팝업 -->
-    <Popup6 v-if="this.$store.state.selectedBuildingIndex === 6"/>
+    <Popup6 v-if="this.$store.state.aio.selectedBuildingIndex === 6"/>
     <!-- 소독 팝업 -->
-    <Popup7 v-if="this.$store.state.selectedBuildingIndex === 7"/>
+    <Popup7 v-if="this.$store.state.aio.selectedBuildingIndex === 7"/>
     <!-- 송수 팝업 -->
-    <Popup8 v-if="this.$store.state.selectedBuildingIndex === 8"/>
+    <Popup8 v-if="this.$store.state.aio.selectedBuildingIndex === 8"/>
     <!-- 탈수기동 팝업 -->
-    <Popup9 v-if="this.$store.state.selectedBuildingIndex === 9"/>
+    <Popup9 v-if="this.$store.state.aio.selectedBuildingIndex === 9"/>
     <!-- 농축조 팝업 -->
-    <Popup10 v-if="this.$store.state.selectedBuildingIndex === 10"/>
+    <Popup10 v-if="this.$store.state.aio.selectedBuildingIndex === 10"/>
     <!-- 오존 팝업 -->
-    <Popup11 v-if="this.$store.state.selectedBuildingIndex === 11"/>
+    <Popup11 v-if="this.$store.state.aio.selectedBuildingIndex === 11"/>
   </div>
 </template>
 
 <script>
-import MainFactor from '@/components/dashboard/MainFactor'
-import DashboardInfo from '@/components/dashboard/DashboardInfo'
-import WaterFlow from '@/components/dashboard/WaterFlow'
-import BrainImage from '@/components/dashboard/BrainImage'
-import Popup1 from '@/components/dashboard/popup/Popup1'
-import Popup2 from '@/components/dashboard/popup/Popup2'
-import Popup3 from '@/components/dashboard/popup/Popup3'
-import Popup4 from '@/components/dashboard/popup/Popup4'
-import Popup5 from '@/components/dashboard/popup/Popup5'
-import Popup6 from '@/components/dashboard/popup/Popup6'
-import Popup7 from '@/components/dashboard/popup/Popup7'
-import Popup8 from '@/components/dashboard/popup/Popup8'
-import Popup9 from '@/components/dashboard/popup/Popup9'
-import Popup10 from '@/components/dashboard/popup/Popup10'
-import Popup11 from '@/components/dashboard/popup/Popup11'
-import { SET_OVERLAY } from '@/store'
-import { GET_RECEIVING_LATEST } from '@/store/modules/receiving'
+import MainFactor from '@/components/aio/dashboard/MainFactor'
+import DashboardInfo from '@/components/aio/dashboard/DashboardInfo'
+import WaterFlow from '@/components/aio/dashboard/WaterFlow'
+import BrainImage from '@/components/aio/dashboard/BrainImage'
+import Popup1 from '@/components/aio/dashboard/popup/Popup1'
+import Popup2 from '@/components/aio/dashboard/popup/Popup2'
+import Popup3 from '@/components/aio/dashboard/popup/Popup3'
+import Popup4 from '@/components/aio/dashboard/popup/Popup4'
+import Popup5 from '@/components/aio/dashboard/popup/Popup5'
+import Popup6 from '@/components/aio/dashboard/popup/Popup6'
+import Popup7 from '@/components/aio/dashboard/popup/Popup7'
+import Popup8 from '@/components/aio/dashboard/popup/Popup8'
+import Popup9 from '@/components/aio/dashboard/popup/Popup9'
+import Popup10 from '@/components/aio/dashboard/popup/Popup10'
+import Popup11 from '@/components/aio/dashboard/popup/Popup11'
+import { SET_OVERLAY } from '@/store/aio/modules/aio'
+import { GET_LATEST } from '@/store/aio/modules/receiving' 
 // import { GET_COAGULANT_LATEST } from '@/store/modules/coagulants'
 // import { GET_MIXING_LATEST } from '@/store/modules/mixing'
 // import { GET_SEDIMENTATION_LATEST } from '@/store/modules/sedimentation'
 // import { GET_FILTER_LATEST } from '@/store/modules/filter'
 // import { GET_GAC_LATEST } from '@/store/modules/gac'
 // import { GET_DISINFECTION_LATEST } from '@/store/modules/disinfection'
-import { SERVICE_URL } from '@/store'
+import { SERVICE_URL } from '@/store/aio/modules/aio'
 // import { GET_EMS_LATEST } from '@/store/modules/ems'
 // import { GET_OZONE_LATEST } from '@/store/modules/ozone'
 // import { GET_PMS_LATEST } from '@/store/modules/pms'
@@ -301,14 +301,14 @@ export default {
      * @param index 선택한 공정 index
      */
     onBuildingMouseover: function (index) {
-      this.$store.state.selectedBuildingIndex = index
+      this.$store.state.aio.selectedBuildingIndex = index
     },
     /**
      * 공정 건물에 마우스가 벗어났을 때 발생하는 이벤트 함수
      * 선택된 공정 건물 상태 값을 없음(0)으로 변경
      */
     onBuildingMouseout: function () {
-      this.$store.state.selectedBuildingIndex = 0
+      this.$store.state.aio.selectedBuildingIndex = 0
     },
   },
   /**
@@ -317,9 +317,9 @@ export default {
    * 호출 전 로딩바 생성 / 호출 후 로딩바 제거
    */
   mounted: function() {
-    this.$store.commit(SET_OVERLAY, true)
+    this.$store.commit('aio/SET_OVERLAY', true)
     Promise.all([
-      this.$store.dispatch(GET_RECEIVING_LATEST),
+      // this.$store.dispatch('receiving/GET_LATEST'),
       // this.$store.dispatch(GET_COAGULANT_LATEST),
       // this.$store.dispatch(GET_MIXING_LATEST),
       // this.$store.dispatch(GET_SEDIMENTATION_LATEST),
@@ -330,9 +330,9 @@ export default {
       // this.$store.dispatch(GET_EMS_LATEST),
       // this.$store.dispatch(GET_PMS_LATEST)
     ]).finally(() => {
-      this.$store.commit(SET_OVERLAY, false)
+      this.$store.commit('aio/SET_OVERLAY', false)
     })
-
+    
     // this.timer = setInterval(() => {
     //   this.$store.dispatch(GET_RECEIVING_LATEST),
     //   this.$store.dispatch(GET_COAGULANT_LATEST),
@@ -368,7 +368,7 @@ export default {
 }
 // 대시보드 사이즈 및 배경
 .dashboard-container {
-  background-image: url('../../assets/dashboard_img/dashboard_background.png');
+  background-image: url('../../../assets/dashboard_img/dashboard_background.png');
   background-size: cover;
   width: 1503px;
   height: 990px;
@@ -406,7 +406,7 @@ export default {
     left: 50px;
     width: 196px;
     height: 129px;
-    background-image: url('../../assets/dashboard_img/one_building.png');
+    background-image: url('../../../assets/dashboard_img/one_building.png');
   }
   // 농축조 건물
   .two-building{
@@ -415,7 +415,7 @@ export default {
     left: 319px;
     width: 227px;
     height: 128px;
-    background-image: url('../../assets/dashboard_img/two_building.png');
+    background-image: url('../../../assets/dashboard_img/two_building.png');
   }
   // 정수지 건물
   .four-building{
@@ -424,7 +424,7 @@ export default {
     left: 386px;
     width: 487px;
     height: 302px;
-    background-image: url('../../assets/dashboard_img/four_building.png');
+    background-image: url('../../../assets/dashboard_img/four_building.png');
   }
   // 관리동 건물
   .five-building{
@@ -433,7 +433,7 @@ export default {
     left: 890px;
     width: 236px;
     height: 178px;
-    background-image: url('../../assets/dashboard_img/five_building.png');
+    background-image: url('../../../assets/dashboard_img/five_building.png');
   }
   // 착수 건물
   &__splashdown{
@@ -486,7 +486,7 @@ export default {
       text-align: center;
       color: #fff;
       z-index: 10;
-      cursor: pointer;
+      cursor: pointer;    
     }
   }
   // 약품 건물
@@ -615,7 +615,7 @@ export default {
       cursor:pointer;
     }
   }
-  // GAC 여과 건물
+  // GAC 여과 건물   
   &__gac{
     position: absolute;
     left: 89px;
@@ -662,7 +662,7 @@ export default {
       text-align: center;
       color: #fff;
       z-index: 10;
-      cursor: pointer;
+      cursor: pointer;  
     }
   }
   // 여과 건물
@@ -809,7 +809,7 @@ export default {
       text-align: center;
       color: #fff;
       z-index: 10;
-      cursor: pointer;
+      cursor: pointer;  
     }
   }
   // 탈수기동 건물
@@ -865,7 +865,7 @@ export default {
       text-align: center;
       color: #fff;
       z-index: 10;
-      cursor: pointer;
+      cursor: pointer;  
     }
   }
   // 농축조 건물
@@ -921,7 +921,7 @@ export default {
       text-align: center;
       color: #fff;
       z-index: 10;
-      cursor: pointer;
+      cursor: pointer;  
     }
   }
   // 오존 건물
@@ -986,7 +986,7 @@ export default {
 // 위 아래로 움직이는 아이콘
 .cube {
   z-index: 5;
-  pointer-events:none;
+  pointer-events:none;  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1002,7 +1002,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../../assets/dashboard_icons/cube_back.png');
+    background-image: url('../../../assets/dashboard_icons/cube_back.png');
   }
   // 아이콘 3차원
   &__noimg{
@@ -1018,10 +1018,10 @@ export default {
     animation: turn 5s linear 0s infinite normal;
   }
   // 아이콘 앞면(AI 모드 ON)
-  &__front_logo--on {
+  &__front_logo--on {    
     width: 80px;
     height: 80px;
-    background-image: url('../../assets/dashboard_icons/cube_ai_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_ai_icon.png');
     background-position: center;
     background-size: cover;
     position: absolute;
@@ -1029,10 +1029,10 @@ export default {
     backface-visibility: hidden;
   }
   // 아이콘 앞면(AI 모드 OFF)
-  &__front_logo--off {
+  &__front_logo--off {    
     width: 80px;
     height: 80px;
-    background-image: url('../../assets/dashboard_icons/cube_ai_off_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_ai_off_icon.png');
     background-position: center;
     background-size: cover;
     position: absolute;
@@ -1102,7 +1102,7 @@ export default {
   top:489px;
   left:228px;
   .back_disinfection{
-    background-image: url('../../assets/dashboard_icons/cube_disinfection_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_disinfection_icon.png');
   }
 }
 
@@ -1111,7 +1111,7 @@ export default {
   top:268px;
   left:223px;
   .back_gac{
-    background-image: url('../../assets/dashboard_icons/cube_gac_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_gac_icon.png');
   }
 }
 
@@ -1120,7 +1120,7 @@ export default {
   top:110px;
   left:676px;
   .back_percolation{
-    background-image: url('../../assets/dashboard_icons/cube_percolation_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_percolation_icon.png');
   }
 }
 
@@ -1129,7 +1129,7 @@ export default {
   top:389px;
   left:838px;
   .back_pump{
-    background-image: url('../../assets/dashboard_icons/cube_pump_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_pump_icon.png');
   }
 }
 
@@ -1138,7 +1138,7 @@ export default {
   top:-107px;
   left:1148px;
   .back_drug{
-    background-image: url('../../assets/dashboard_icons/cube_drug_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_drug_icon.png');
   }
 }
 
@@ -1147,7 +1147,7 @@ export default {
   top:-48px;
   left:1287px;
   .back_splashdown{
-    background-image: url('../../assets/dashboard_icons/cube_splashdown_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_splashdown_icon.png');
   }
 }
 
@@ -1157,7 +1157,7 @@ export default {
   top:33px;
   left:948px;
   .back_sedimentation{
-    background-image: url('../../assets/dashboard_icons/cube_sedimentation_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_sedimentation_icon.png');
   }
 }
 
@@ -1166,7 +1166,7 @@ export default {
   top:-12px;
   left:1060px;
   .back_mix{
-    background-image: url('../../assets/dashboard_icons/cube_mix_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_mix_icon.png');
   }
 }
 
@@ -1175,7 +1175,7 @@ export default {
   top:150px;
   left:100px;
   .back_concentration{
-    background-image: url('../../assets/dashboard_icons/cube_mix_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_mix_icon.png');
   }
 }
 
@@ -1184,7 +1184,7 @@ export default {
   top:70px;
   left:386px;
   .back_dehydration{
-    background-image: url('../../assets/dashboard_icons/cube_splashdown_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_splashdown_icon.png');
   }
 }
 
@@ -1193,7 +1193,7 @@ export default {
   top:170px;
   left:450px;
   .back_o3{
-    background-image: url('../../assets/dashboard_icons/cube_ozone_icon.png');
+    background-image: url('../../../assets/dashboard_icons/cube_ozone_icon.png');
   }
 }
 </style>

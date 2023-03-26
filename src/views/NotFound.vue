@@ -28,7 +28,7 @@
   }
 </script>
 <style scoped>
-/*@import '../style.css';*/
+@import '../style.css';
   .text-center {
     text-align: center;
     margin-bottom: 20px;

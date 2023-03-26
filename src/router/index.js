@@ -7,18 +7,12 @@ const routes = [
   {
     path: '/',
     name: 'Dashboard',
-    component: () => import('@/components/dashboard/Dashboard'),
-    meta: {
-      authenticated: false,
-    },
+    component: () => import('@/components/aio/dashboard/Dashboard'),
   },
 
   {
     path: '*',
     component: () => import('@/views/NotFound'),
-    meta: {
-      authenticated: false,
-    },
   },
 ];
 

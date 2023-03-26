@@ -1,4 +1,4 @@
-import common from '@/store/common'
+import common from '@/store/aio/modules/common'
 
 export const API_SERVER = '/api'
 export const JSON_SERVER = '/json'
@@ -124,8 +124,8 @@ export const PLOT_BANDS_WINTER = [{
 export const SPRING = 0
 export const SUMMER = 1
 export const WINTER = 2
-const store = new Vuex.Store({
-  state: {
+
+const state = {
     currentDashboardTitle: '스마트 정수장 AI 플랫폼', // 타이틀
     showConfirmDialog: false, // 확인 Dialog
     // App.vue router main css
@@ -140,8 +140,9 @@ const store = new Vuex.Store({
     selectedBuildingIndex: 0, // 현재 선택되어 있는 공정(default. 착수)
     isSelectedMainMenuIndex7AiOn: true, // Dashboard.vue 탈수기동 AI모드
     isSelectedMainMenuIndex9AiOn: true, // Dashboard.vue 농축조 AI모드
-  },
-  getters: {
+  }
+
+  const getters = {
     /**
      * 상태에 따라 배경화면 선택
      * @param state 상태
@@ -154,20 +155,24 @@ const store = new Vuex.Store({
         return 'disinfection'
       }
     },
-  },
-  mutations: {
-    [SET_OVERLAY]: function (state, data) {
+  }
+
+  const mutations = {
+    SET_OVERLAY (state, data) {
       state.overlay = data
     }
-  },
-  actions: {
   }
-})
 
-export default {
+  const actions = {
+  }
+
+
+const aio = {
   namespaced: true,
   state,
   mutations,
   getters,
   actions,
 };
+
+export default aio;
