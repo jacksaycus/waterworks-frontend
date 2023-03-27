@@ -42,33 +42,24 @@ export default {
     provide: {
         [THEME_KEY]: 'dark',
     },
-    // data: () => ({
-    data() {
-      return {
-        normalValue : this.$store.state.PmsModule.process.map((item) => item.normal).reduce((a, b) => a + b, 0)
-        ,    
-        errValue : this.$store.state.PmsModule.process.map((item) => item.err).reduce((a, b) => a + b, 0)
+    data: () => ({
+        // normalValue : this.$store.state.PmsModule.process.map((item) => item.normal).reduce((a, b) => a + b, 0)
+        // ,    
+        // errValue : this.$store.state.PmsModule.process.map((item) => item.err).reduce((a, b) => a + b, 0)
+        // ,
+        normalValue:[],
+        errrValue:[],
+        data :[]
         ,
-        trafficWay : [
-            {
-                name: '정상',
-                value: this.normalValue,
-            },
-            {
-                name: '이상',
-                value: this.errValue,
-            },
-        ]
+        series : []
+        ,
+        trafficWay : []
         ,
         // normal : this.trafficWay.filter((data) => data.name === '정상')[0].value,
         // error : this.trafficWay.filter((data) => data.name === '이상')[0].value,
-        normal : this.normalValue,
-        error : this.errValue,
-        normalPercentage:((this.normal / (this.normal + this.error)) * 100).toFixed(0),
-        
-        data : []    
-        ,
-        
+        normal : 0,
+        error : 0,
+        normalPercentage:0,
         borderColor : ['#1464EF', '#ED1874'],
         color : [
             new echarts.graphic.LinearGradient(0, 1, 0, 0, [
@@ -93,32 +84,9 @@ export default {
             ]),
         ],
         shadowColor : ['#1464EF', '#ED1874'],
-        option : {
-            backgroundColor: 'rgba(0,0,0,0)',
-            title: {
-                text: '',
-                textStyle: {
-                    fontWeight: 'normal',
-                    fontSize: 25,
-                    color: 'rgb(97, 142, 205)',
-                },
-            },
-            legend: {
-                show: true,
-                right: 0,
-                top: 0,
-                orient: 'vertical',
-                itemHeight: 6,
-                textStyle: {
-                    color: '#fff',
-                    fontSize: 14,
-                },
-            },
-            series: []
-            ,
-        }
+        option : {},
       }
-    }
+    )
     ,
     methods: {
         setTrafficWay() {
@@ -141,9 +109,21 @@ export default {
     }
     ,
     mounted(){
-        // this.setTrafficWay();
-        // console.log(' this.$store.state.PmsModule.process=>', this.$store.state.PmsModule.process);
-        this.data =   {
+        this.normalPercentage=((this.normal / (this.normal + this.error)) * 100).toFixed(0),
+        this.normalValue = this.$store.state.PmsModule.process.map((item) => item.normal).reduce((a, b) => a + b, 0);
+        this.errValue = this.$store.state.PmsModule.process.map((item) => item.err).reduce((a, b) => a + b, 0);
+        this.normal= this.normalValue;
+        this.error = this.errValue;
+        this.trafficWay.push(
+            {
+                name: '정상',
+                value: this.normalValue,
+            });
+            this.trafficWay.push({
+                name: '이상',
+                value: this.errValue,
+            });
+        this.data.push({
                 value:this.normalValue,
                 name:'정상',
                  itemStyle:{
@@ -155,11 +135,9 @@ export default {
                          shadowColor: '#1464EF',
                  }
             }
-        }
-        ,
+        });
+        this.data.push(
         {
-                //  value:this.trafficWay[1].value,
-                //  name:this.trafficWay[1].name,
                  value:this.errValue,
                  name:'이상',
                  itemStyle:{
@@ -172,9 +150,119 @@ export default {
                  }
             }
         }
-        ,
-        this.series = [
-                   {
+        );
+        this.series.push(
+            {
+                    type: 'liquidFill',
+                    radius: '60%',
+                    center: ['48%', '50%'],
+                    data: [
+                        this.normalPercentage * 0.01,
+                        this.normalPercentage * 0.01 - 0.1,
+                        this.normalPercentage * 0.01 - 0.25,
+                    ],
+                    backgroundStyle: {
+                        borderWidth: 1,
+                        color: '#191E36',
+                    },
+                    label: {
+                        normal: {
+                            formatter: '\n' + this.normalPercentage + '%',
+                            textStyle: {
+                                fontSize: 45,
+                                lineHeight: 30,
+                                textShadowColor: 'rgba(0,0,0,0.2)',
+                                textShadowBlur: 8,
+                                textShadowOffsetX: 2,
+                                textShadowOffsetY: 2,
+                            },
+                        },
+                    },
+                    outline: {
+                        show: false,
+                    },
+                }
+        );
+               this.series.push({
+                    type: 'pie',
+                    center: ['48%', '50%'],
+                    radius: ['65%', '80%'],
+                    hoverAnimation: false,
+                    data: this.data,
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true,
+                                position: 'outside',
+                                color: '#fff',
+                                fontSize: 16,
+                                lineHeight: 20,
+                                align: 'center',
+
+                                formatter: (params) => {
+                                    var percent = 0;
+                                    var total = 0;
+                                    for (
+                                        var i = 0;
+                                        i < this.trafficWay.length;
+                                        i++
+                                    ) {
+                                        total += this.trafficWay[i].value;
+                                    }
+                                    percent = (
+                                        (params.value / total) *
+                                        100
+                                    ).toFixed(0);
+                                    if (params.name !== '') {
+                                        return (
+                                            params.name +
+                                            '\n' +
+                                            percent +
+                                            '%' +
+                                            '\n' +
+                                            params.value +
+                                            '대'
+                                        );
+                                    } else {
+                                        return '';
+                                    }
+                                },
+                            },
+                            labelLine: {
+                                length: -10,
+                                length2: 80,
+                                show: true,
+                                lineStyle: {
+                                    width: 3,
+                                },
+                            },
+                        },
+                    },
+                }
+        );
+        this.option = {
+            backgroundColor: 'rgba(0,0,0,0)',
+            title: {
+                text: '',
+                textStyle: {
+                    fontWeight: 'normal',
+                    fontSize: 25,
+                    color: 'rgb(97, 142, 205)',
+                },
+            },
+            legend: {
+                show: true,
+                right: 0,
+                top: 0,
+                orient: 'vertical',
+                itemHeight: 6,
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 14,
+                },
+            },
+            series: [
+                {
                     type: 'liquidFill',
                     radius: '60%',
                     center: ['48%', '50%'],
@@ -259,8 +347,12 @@ export default {
                             },
                         },
                     },
-                }
-            ]
+                },
+            ],
+        };
+        // this.setTrafficWay();
+        // console.log(' this.$store.state.PmsModule.process=>', this.$store.state.PmsModule.process);
+       
     },
 };
 </script>

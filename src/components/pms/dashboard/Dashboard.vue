@@ -1,4 +1,5 @@
 <template>
+
     <div class="dashboard-container">
         <DashboardInfo />
         <WaterFlow />
@@ -763,6 +764,7 @@
         <Popup8 v-if="this.$store.state.PmsModule.selectedBuildingIndex === 8" />
         <Popup9 v-if="this.$store.state.PmsModule.selectedBuildingIndex === 9" />
     </div>
+
 </template>
 
 <script>
@@ -777,6 +779,7 @@ import Popup6 from '@/components/pms/dashboard/popup/Popup6.vue';
 import Popup7 from '@/components/pms/dashboard/popup/Popup7.vue';
 import Popup8 from '@/components/pms/dashboard/popup/Popup8.vue';
 import Popup9 from '@/components/pms/dashboard/popup/Popup9.vue';
+import MainLayout from '../../../layouts/Main.vue';
 // import { useStore } from 'vuex';
 import Pie from '@/components/pms/chart/dashboard/PieChart_main.vue';
 // import { useRouter } from 'vue-router';
@@ -797,6 +800,7 @@ export default {
         Popup8,
         Popup9,
         Pie,
+        MainLayout,
     },
     data: () => ({
 

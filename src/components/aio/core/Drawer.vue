@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class="drawer-container">
       <!-- Drawer 손잡이 -->
       <div v-if="$store.state.drawer.drawer.handler" class="drawer-handler" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
@@ -387,6 +388,7 @@
      
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -412,6 +414,7 @@ export default {
     menuItems: function () {
       // 자율 운영 메뉴
       if (this.$store.state.drawer.selectedMainMenuIndex === 2) {
+        console.log(this.$store.state.drawer.drawer.items);
         return this.$store.state.drawer.drawer.items
         // 스마트 EMS 메뉴
       } else if (this.$store.state.drawer.selectedMainMenuIndex === 3){
