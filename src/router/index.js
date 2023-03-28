@@ -15,6 +15,11 @@ const routes = [
     component: () => import('@/components/pms/dashboard/Dashboard'),
   },
   {
+    path: '/monitor4',
+    name: 'monitor4',
+    component: () => import('@/components/pms/component/Monitor4'),
+  },
+  {
     path: '*',
     component: () => import('@/views/NotFound'),
   },

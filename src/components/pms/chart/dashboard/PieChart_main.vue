@@ -44,7 +44,7 @@ export default {
     },
     data: () => ({
         // normalValue : this.$store.state.PmsModule.process.map((item) => item.normal).reduce((a, b) => a + b, 0)
-        // ,    
+        // ,
         // errValue : this.$store.state.PmsModule.process.map((item) => item.err).reduce((a, b) => a + b, 0)
         // ,
         normalValue:[],
@@ -98,9 +98,9 @@ export default {
                         normal: {
                             borderWidth: 2,
                             shadowBlur: 5,
-                            borderColor: borderColor[i],
-                            color: color[i],
-                            shadowColor: shadowColor[i],
+                            borderColor: this.borderColor[i],
+                            color: this.color[i],
+                            shadowColor: this.shadowColor[i],
                         },
                     },
                 });
@@ -109,7 +109,8 @@ export default {
     }
     ,
     mounted(){
-        this.normalPercentage=((this.normal / (this.normal + this.error)) * 100).toFixed(0),
+        this.normalPercentage=((this.normal / (this.normal + this.error)) * 100).toFixed(0);
+        console.log(this.normalPercentage);
         this.normalValue = this.$store.state.PmsModule.process.map((item) => item.normal).reduce((a, b) => a + b, 0);
         this.errValue = this.$store.state.PmsModule.process.map((item) => item.err).reduce((a, b) => a + b, 0);
         this.normal= this.normalValue;
@@ -210,8 +211,7 @@ export default {
                                         total += this.trafficWay[i].value;
                                     }
                                     percent = (
-                                        (params.value / total) *
-                                        100
+                                        (params.value / total) * 100
                                     ).toFixed(0);
                                     if (params.name !== '') {
                                         return (
@@ -350,9 +350,9 @@ export default {
                 },
             ],
         };
-        // this.setTrafficWay();
+        this.setTrafficWay();
         // console.log(' this.$store.state.PmsModule.process=>', this.$store.state.PmsModule.process);
-       
+
     },
 };
 </script>

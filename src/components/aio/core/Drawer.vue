@@ -1,22 +1,21 @@
 <template>
-  <div>
-    <div class="drawer-container">
-      <!-- Drawer 손잡이 -->
-      <div v-if="$store.state.drawer.drawer.handler" class="drawer-handler" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
-        <div class="tri"></div>
-      </div>
-      <!-- Drawer 메뉴 -->
-      <div :style="{'width': drawerWidth}" style="height: 100%; display:flex;" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
-        <!-- 메인 메뉴(메인, 자율운영, 스마트EMS, 스마트PMS, 지능형 영상, 운영관리) -->
-        <div class="left-main-menu-container" :style="{'width': leftMenuWidth}">
-          <div class="logo-container" v-show="leftMenuWidth !== '15px'">
-            <div class="logo-icon"></div>
-          </div>
-          <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(0)">
-            <div class="left-main-menu-item-icon dashboard" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}"></div>
-            <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}">메인</div>
-          </div>
-          <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 2}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(2)">
+  <div class="drawer-container">
+    <!-- Drawer 손잡이 -->
+    <div v-if="$store.state.drawer.drawer.handler" class="drawer-handler" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
+      <div class="tri"></div>
+    </div>
+    <!-- Drawer 메뉴 -->
+    <div :style="{'width': drawerWidth}" style="height: 100%; display:flex;" @mouseover="mainMenuMouseOver" @mouseleave="mainMenuMouseOut">
+      <!-- 메인 메뉴(메인, 자율운영, 스마트EMS, 스마트PMS, 지능형 영상, 운영관리) -->
+      <div class="left-main-menu-container" :style="{'width': leftMenuWidth}">
+        <div class="logo-container" v-show="leftMenuWidth !== '15px'">
+          <div class="logo-icon"></div>
+        </div>
+        <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(0)">
+          <div class="left-main-menu-item-icon dashboard" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}"></div>
+          <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 0}">메인</div>
+        </div>
+        <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 2}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(2)">
           <div class="left-main-menu-item-icon ao" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 2}"></div>
           <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 2}">자율운영</div>
         </div>
@@ -28,14 +27,14 @@
           <div class="left-main-menu-item-icon pms" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 4}"></div>
           <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 4}">스마트 PMS</div>
         </div>
-        <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 6}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(6)">
-          <div class="left-main-menu-item-icon cctv" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 6}"></div>
-          <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 6}">지능형 영상</div>
-        </div>
-        <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 5}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(5)">
-          <div class="left-main-menu-item-icon system" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 5}"></div>
-          <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 5}">운영 관리</div>
-        </div>
+<!--        <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 6}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(6)">-->
+<!--          <div class="left-main-menu-item-icon cctv" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 6}"></div>-->
+<!--          <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 6}">지능형 영상</div>-->
+<!--        </div>-->
+<!--        <div class="left-main-menu-item-container" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 5}" v-show="leftMenuWidth !== '15px'" @click="onClickMainMenu(5)">-->
+<!--          <div class="left-main-menu-item-icon system" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 5}"></div>-->
+<!--          <div class="left-main-menu-item-text" :class="{selected: $store.state.drawer.selectedMainMenuIndex === 5}">운영 관리</div>-->
+<!--        </div>-->
       </div>
       <!-- 자율운영 메뉴(착수, 약품, 혼화/응집, 침전, 여과, 오존, GAC여과, 소독, 송수) -->
       <div v-if="$store.state.drawer.selectedMainMenuIndex === 2" class="right-menu-container" :style="{ 'width': rightMenuWidth }" @mouseleave="rightMenuMouseOut">
@@ -88,7 +87,7 @@
                         <v-list-item-title>
                           {{ child.text }}
                         </v-list-item-title>
-                    </v-list-item-content>
+                      </v-list-item-content>
                     </v-list-item>
                   </template>
                 </v-list-group>
@@ -107,23 +106,23 @@
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item
-                  
-                  :key="item.text"
-                  :to="item.route"
-                  link
-                  v-model="item.active"
-                >
-                  <v-list-item-action>
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      {{ item.text }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-            </template>
+<!--                <v-list-item-->
+<!--                  v-else-if="item.authority >= $store.state.login.user.authority"-->
+<!--                  :key="item.text"-->
+<!--                  :to="item.route"-->
+<!--                  link-->
+<!--                  v-model="item.active"-->
+<!--                >-->
+<!--                  <v-list-item-action>-->
+<!--                    <v-icon>{{ item.icon }}</v-icon>-->
+<!--                  </v-list-item-action>-->
+<!--                  <v-list-item-content>-->
+<!--                    <v-list-item-title>-->
+<!--                      {{ item.text }}-->
+<!--                    </v-list-item-title>-->
+<!--                  </v-list-item-content>-->
+<!--                </v-list-item>-->
+              </template>
             </v-list>
           </div>
         </v-navigation-drawer>
@@ -222,7 +221,7 @@
                   @click="goEMSURL(item.route)"
                   link
                 >
-                <v-list-item-action>
+                  <v-list-item-action>
                     <v-icon>{{ item.icon }}</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
@@ -283,117 +282,119 @@
                       </v-list-item-action>
                       <v-list-item-content>
                         <v-list-item-title>
-                            {{ child.text }}
-                        </v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </template>
-                </v-list-group>
-                <v-list-item
-                  
-                  :key="item.text"
-                  @click="goPMSURL(item.route)"
-                  link
-                >
-                  <v-list-item-action>
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      {{ item.text }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
-            </v-list>
-          </div>
-        </v-navigation-drawer>
-    </div>
-      <!-- 운영관리 메뉴(알람이력, 성능모니터링, 알람관리, 사용자 관리, 로그인 이력, 네트워크 설정) -->
-      <div v-else class="right-menu-container" :style="{ 'width': rightMenuWidth }" @mouseleave="rightMenuMouseOut">
-        <v-navigation-drawer
-          :permanent="$store.state.drawer.drawer.parmanet"
-          :expand-on-hover="$store.state.drawer.drawer.expandOnHover"
-          color="rgba(0, 0, 0, 0)"
-        >
-          <div class="right-menu-header-container" style="width: 100%; height: 63px; padding-top:20px;">
-            <div class="right-menu-header-icon" :class="{ao: rightHeaderIcon==='ao'}"></div>
-            <div class="right-menu-header-text">{{ rightHeaderText }}</div>
-          </div>
-
-          <v-divider></v-divider>
-          <div class="list-wrapper">
-            <v-list
-              dense
-              width=159
-            >
-              <template v-for="item in menuItems">
-                <v-list-group
-                  v-if="item.children"
-                  append-icon=""
-                  :key="item.key"
-                  :to="item.route"
-                  color="#00b9ed"
-                >
-                  <template v-slot:activator>
-                    <v-list-item-action>
-                      <v-icon>{{ item.icon }}</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        {{ item.text }}
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </template>
-                  <template v-for="(child, i) in item.children">
-                    <v-list-item
-                      :key="i"
-                      :to="child.route"
-                      link
-                    >
-                      <v-list-item-action>
-                        <v-icon>{{ child.icon }}</v-icon>
-                      </v-list-item-action>
-                      <v-list-item-content>
-                        <v-list-item-title>
                           {{ child.text }}
                         </v-list-item-title>
                       </v-list-item-content>
                     </v-list-item>
                   </template>
                 </v-list-group>
-                <v-list-item
-                
-                  :key="item.text"
-                  :to="item.route"
-                  link
-                >
-                  <v-list-item-action>
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      {{ item.text }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
+<!--                <v-list-item-->
+<!--                  v-else-if="item.authority >= $store.state.login.user.authority"-->
+<!--                  :key="item.text"-->
+<!--                  @click="goPMSURL(item.route)"-->
+<!--                  link-->
+<!--                >-->
+<!--                  <v-list-item-action>-->
+<!--                    <v-icon>{{ item.icon }}</v-icon>-->
+<!--                  </v-list-item-action>-->
+<!--                  <v-list-item-content>-->
+<!--                    <v-list-item-title>-->
+<!--                      {{ item.text }}-->
+<!--                    </v-list-item-title>-->
+<!--                  </v-list-item-content>-->
+<!--                </v-list-item>-->
               </template>
             </v-list>
           </div>
         </v-navigation-drawer>
       </div>
+      <!-- 운영관리 메뉴(알람이력, 성능모니터링, 알람관리, 사용자 관리, 로그인 이력, 네트워크 설정) -->
+<!--      <div v-else class="right-menu-container" :style="{ 'width': rightMenuWidth }" @mouseleave="rightMenuMouseOut">-->
+<!--        <v-navigation-drawer-->
+<!--          :permanent="$store.state.drawer.drawer.parmanet"-->
+<!--          :expand-on-hover="$store.state.drawer.drawer.expandOnHover"-->
+<!--          color="rgba(0, 0, 0, 0)"-->
+<!--        >-->
+<!--          <div class="right-menu-header-container" style="width: 100%; height: 63px; padding-top:20px;">-->
+<!--            <div class="right-menu-header-icon" :class="{ao: rightHeaderIcon==='ao'}"></div>-->
+<!--            <div class="right-menu-header-text">{{ rightHeaderText }}</div>-->
+<!--          </div>-->
+
+<!--          <v-divider></v-divider>-->
+<!--          <div class="list-wrapper">-->
+<!--            <v-list-->
+<!--              dense-->
+<!--              width=159-->
+<!--            >-->
+<!--              <template v-for="item in menuItems">-->
+<!--                <v-list-group-->
+<!--                  v-if="item.children"-->
+<!--                  append-icon=""-->
+<!--                  :key="item.key"-->
+<!--                  :to="item.route"-->
+<!--                  color="#00b9ed"-->
+<!--                >-->
+<!--                  <template v-slot:activator>-->
+<!--                    <v-list-item-action>-->
+<!--                      <v-icon>{{ item.icon }}</v-icon>-->
+<!--                    </v-list-item-action>-->
+<!--                    <v-list-item-content>-->
+<!--                      <v-list-item-title>-->
+<!--                        {{ item.text }}-->
+<!--                      </v-list-item-title>-->
+<!--                    </v-list-item-content>-->
+<!--                  </template>-->
+<!--                  <template v-for="(child, i) in item.children">-->
+<!--                    <v-list-item-->
+<!--                      :key="i"-->
+<!--                      :to="child.route"-->
+<!--                      link-->
+<!--                    >-->
+<!--                      <v-list-item-action>-->
+<!--                        <v-icon>{{ child.icon }}</v-icon>-->
+<!--                      </v-list-item-action>-->
+<!--                      <v-list-item-content>-->
+<!--                        <v-list-item-title>-->
+<!--                          {{ child.text }}-->
+<!--                        </v-list-item-title>-->
+<!--                      </v-list-item-content>-->
+<!--                    </v-list-item>-->
+<!--                  </template>-->
+<!--                </v-list-group>-->
+<!--                <v-list-item-->
+<!--                  v-else-if="item.authority >= $store.state.login.user.authority"-->
+<!--                  :key="item.text"-->
+<!--                  :to="item.route"-->
+<!--                  link-->
+<!--                >-->
+<!--                  <v-list-item-action>-->
+<!--                    <v-icon>{{ item.icon }}</v-icon>-->
+<!--                  </v-list-item-action>-->
+<!--                  <v-list-item-content>-->
+<!--                    <v-list-item-title>-->
+<!--                      {{ item.text }}-->
+<!--                    </v-list-item-title>-->
+<!--                  </v-list-item-content>-->
+<!--                </v-list-item>-->
+<!--              </template>-->
+<!--            </v-list>-->
+<!--          </div>-->
+<!--        </v-navigation-drawer>-->
+<!--      </div>-->
     </div>
 
-    <div style="position:absolute; display:none">
-     
-    </div>
+<!--    <div style="position:absolute; display:none">-->
+<!--      <form ref="form">-->
+<!--        <input name="token" v-model="$store.state.login.user.accessToken">-->
+<!--      </form>-->
+<!--    </div>-->
   </div>
-</div>
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import { SERVICE_URL } from '@/store/aio/modules/aio'
+
 export default {
   name: 'Drawer',
   data: () => ({
@@ -414,13 +415,13 @@ export default {
     menuItems: function () {
       // 자율 운영 메뉴
       if (this.$store.state.drawer.selectedMainMenuIndex === 2) {
-        console.log(this.$store.state.drawer.drawer.items);
         return this.$store.state.drawer.drawer.items
         // 스마트 EMS 메뉴
       } else if (this.$store.state.drawer.selectedMainMenuIndex === 3){
         return this.$store.state.drawer.drawer.itemsEMS
         // 스마트 PMS 메뉴
       } else if (this.$store.state.drawer.selectedMainMenuIndex === 4){
+        console.log(this.$store.state.drawer.drawer.itemsPMS);
         return this.$store.state.drawer.drawer.itemsPMS
         // 운영 관리 메뉴
       } else {
@@ -462,7 +463,8 @@ export default {
         this.drawerWidth = '262px'
         this.$store.state.drawer.mainRightMenuWidth = '159px'
         // 운영관리
-      } else if (index === 5) {
+      }
+      else if (index === 5) {
         this.rightHeaderIcon = "sys"
         this.rightHeaderText = "운영 관리"
         this.drawerWidth = '262px'
@@ -512,28 +514,29 @@ export default {
      */
     goEMSURL: function(url) {
       console.log(url)
-    //   if (this.$store.state.login.user.accessToken !== null) {
-    //     window.open(SERVICE_URL.EMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
-    //   } else {
-    //     window.open(SERVICE_URL.EMS + url, "_self")
-    //   }
+      this.$router.replace('/ems');
+      // if (this.$store.state.login.user.accessToken !== null) {
+      //   window.open(SERVICE_URL.EMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
+      // } else {
+      //   window.open(SERVICE_URL.EMS + url, "_self")
+      // }
     },
     /**
      * PMS 메뉴로 이동하는 함수
      * 로그인 여부에 따라 AccessToken을 넘김
      */
     goPMSURL: function(url) {
-      console.log(url)
+      console.log(url);
       this.$router.replace('/pms');
-    //   if (this.$store.state.login.user.accessToken !== null) {
-    //     window.open(SERVICE_URL.PMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
-    //   } else {
-    //     window.open(SERVICE_URL.PMS + url, "_self")
-    //   }
+      // if (this.$store.state.login.user.accessToken !== null) {
+      //   window.open(SERVICE_URL.PMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
+      // } else {
+      //   window.open(SERVICE_URL.PMS + url, "_self")
+      // }
     },
   },
   created () {
-    //console.log(this.$route.query.token)
+    // console.log(this.$route.query.token)
     // EMS & PMS로 부터 전달받은 토큰이 있는지 확인하여 'X-ACCESS-TOKEN' 헤더의 값으로 설정
     // if (this.$route.query.token !== undefined) {
     //   console.log(this.$route.query.token)
@@ -708,6 +711,7 @@ export default {
     }
   }
 }
+
 // veutify v-navigation-drawer 커스터마이징
 .v-navigation-drawer {
   background-image: linear-gradient(91deg, rgba(11, 50, 95, 0.7) 1%, #021f3b 96%);
@@ -748,6 +752,7 @@ export default {
 .blank:before{
   content: "";
 }
+
 // Drawer 손잡이
 .drawer-handler {
   display:flex;
@@ -773,6 +778,7 @@ export default {
     border-bottom: 5px solid transparent;
   }
 }
+
 // Drawer 2단 컨테이너
 .right-menu-container {
   height: 100%;
@@ -807,4 +813,6 @@ export default {
     color: #ffffff;
   }
 }
+
+
 </style>

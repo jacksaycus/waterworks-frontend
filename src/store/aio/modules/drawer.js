@@ -12,6 +12,14 @@ export default {
       handler: true,
       items: [
         {
+          icon: '$vuetify.icons.EMSDashboard',
+          text: '대시보드',
+          model: false,
+          route: '/',
+          // authority: USER_ROLE.USER,
+          children:[]
+        },
+        {
           icon: '$vuetify.icons.AoRw',
           text: '착수',
           model: false,
@@ -322,11 +330,13 @@ export default {
       ],
       itemsPMS: [
         {
-          icon: '$vuetify.icons.AoDashboard',
+          // icon: '$vuetify.icons.AoDashboard',
+          icon: '$vuetify.icons.EMSDashboard',
           text: '대시보드',
           model: false,
           route: '/pms',
           // authority: USER_ROLE.USER,
+          children: []
         },
         {
           icon: '$vuetify.icons.AoRw',
