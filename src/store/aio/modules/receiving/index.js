@@ -109,7 +109,7 @@ const state = {
   }
 
   const actions = {
-    async GET_LATEST ({ commit }) {
+    async [GET_LATEST] ({ commit }) {
       await axios.get(`${DEV_SERVER}/${URL.RECEIVING_LATEST}`)
         .then(({ data }) => {
           commit(GET_LATEST, data.latest)
@@ -118,7 +118,16 @@ const state = {
           util.printError(error)
         })
     },
-    async PUT_HISTORY_FLOW_OUT ({ commit }) {
+    async [GET_RECEIVING_LATEST] ({ commit }) {
+      await axios.get(`${DEV_SERVER}/${URL.RECEIVING_LATEST}`)
+        .then(({ data }) => {
+          commit(GET_LATEST, data.latest)
+        })
+        .catch(error => {
+          util.printError(error)
+        })
+    },
+    async [PUT_HISTORY_FLOW_OUT] ({ commit }) {
       let nowTimestamp = Date.now()
       let oneDayTimestamp = 1000 * 60 * 60 * 24
       await axios.put(`${DEV_SERVER}/${URL.RECEIVING_HISTORY_FLOW_OUT}`, { 'start_time': new Date(nowTimestamp - oneDayTimestamp).toISOString(), 'end_time': new Date(nowTimestamp).toISOString() })
@@ -130,7 +139,7 @@ const state = {
           util.printError(error)
         })
     },
-    async PUT_CONTROL_OPERATION ({ commit }, { operation }) {
+    async [PUT_CONTROL_OPERATION] ({ commit }, { operation }) {
       await axios.put(`${DEV_SERVER}/${URL.RECEIVING_CONTROL_OPERATION}`, { 'operation': operation })
       .then(() => {
         // commit(PUT_CONTROL_OPERATION, operation)
@@ -152,7 +161,7 @@ const state = {
         commit('alertDialog/OPEN_DIALOG', _data, { root: true })
       })
     },
-    async PUT_CONTROL_LEVEL ({ commit }, { h_target_le_max, h_target_le_min }) {
+    async [PUT_CONTROL_LEVEL] ({ commit }, { h_target_le_max, h_target_le_min }) {
       await axios.put(`${DEV_SERVER}/${URL.RECEIVING_CONTROL_LEVEL}`, { h_target_le_max, h_target_le_min })
       .then(() => {
         let _data = {
@@ -176,6 +185,7 @@ const state = {
   }
 
   const receiving = {
+    namespaced: true,
     state,
     mutations,
     actions,

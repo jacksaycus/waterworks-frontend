@@ -1,5 +1,5 @@
 <template>
-    <vs-row>
+    <vs-row style="background: aliceblue" >
       <vs-col vs-w="12" class="text-center">
         <vs-icon
           icon="sentiment_dissatisfied"

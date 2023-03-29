@@ -5,9 +5,6 @@
 </template>
 
 <script>
-// import * as echarts from 'echarts';
-import { useStore } from 'vuex';
-import { ref, reactive, computed, watch } from 'vue';
 import moment from 'moment';
 
 export default {
@@ -22,33 +19,37 @@ export default {
         'name3',
         'name4',
     ],
-    setup(props) {
-        const store = useStore();
-        const TITLE = ref(props.title);
-        const state = reactive({
-            current1: computed(() => props.detailData1),
-            current2: computed(() => props.detailData2),
-            current3: computed(() => props.detailData3),
-            current4: computed(() => props.detailData4),
-            name1: computed(() => props.name1),
-            name2: computed(() => props.name2),
-            name3: computed(() => props.name3),
-            name4: computed(() => props.name4),
-        });
-
-        watch(state, () => {
-            // console.log('state:::');
-            state.current1 = [];
-            option.series[2].data = state.current1;
-            state.current2 = [];
-            option.series[3].data = state.current2;
-            state.current3 = [];
-            option.series[4].data = state.current3;
-            state.current4 = [];
-            option.series[5].data = state.current4;
-        });
-
-        const option = reactive({
+    data: () => ({
+        TITLE:this.title,
+        current1: this.detailData1,
+        current2: this.detailData2,
+        current3: this.detailData3,
+        current4: this.detailData4,
+        name1: this.name1,
+        name2: this.name2,
+        name3: this.name3,
+        name4: this.name4,
+        options:{},
+    })
+    ,
+    watch: {
+        current1: function(newVal, oldVal){
+            option.series[2].data = newVal;
+        },
+        current2: function(newVal, oldVal){
+            option.series[3].data = newVal;
+        },
+        current3: function(newVal, oldVal){
+            option.series[4].data = newVal;
+        },
+        current4: function(newVal, oldVal){
+            option.series[5].data = newVal;
+        }
+        
+    }        
+    ,   
+    mounted(){
+      this.option = {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'axis',
@@ -327,7 +328,7 @@ export default {
                     data: [],
                 },
                 {
-                    name: state.name3,
+                    name: this.name3,
                     type: 'line',
                     symbol: 'circle',
                     showAllSymbol: true,
@@ -351,7 +352,7 @@ export default {
                     data: [],
                 },
                 {
-                    name: state.name4,
+                    name: this..name4,
                     type: 'line',
                     symbol: 'circle',
                     showAllSymbol: true,
@@ -375,9 +376,8 @@ export default {
                     data: [],
                 },
             ],
-        });
-
-        return { store, option, TITLE };
-    },
+        }
+  }
+        
 };
 </script>

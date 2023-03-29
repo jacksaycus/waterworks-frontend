@@ -15,8 +15,10 @@ import mixing from './aio/modules/mixing'
 import ozone from './aio/modules/ozone'
 import sedimentation from './aio/modules/sedimentation'
 import disinfection from './aio/modules/disinfection'
+import clear from './aio/modules/clear'
 import ems from './aio/modules/ems'
 import pms from './aio/modules/pms'
+import raw from './aio/modules/raw'
 import PmsModule from './pms'
 
 Vue.use(Vuex)
@@ -30,6 +32,7 @@ export default new Vuex.Store({
   modules: {
         drawer,
         aio,
+        clear,
         dialog,
         receiving,
         coagulants,
@@ -41,7 +44,8 @@ export default new Vuex.Store({
         disinfection,
         ems,
         pms,
-
+        raw,
+        
         PmsModule,
     },
     

@@ -11,7 +11,7 @@
         <div class="top-bar--clock"><span>현재시간 </span>{{ this.timestamp | moment('YYYY-MM-DD HH:mm:ss') }}</div>
         <!-- 환경부 로고 -->
         <div class="logo--environment"></div>
-        <span class="title-waio2" @click="$routingByIndex(0)">{{ this.$store.state.currentDashboardTitle }}</span>
+        <span class="title-waio2" @click="$routingByIndex(0)">{{ this.$store.state.aio.currentDashboardTitle }}</span>
         <!-- K-water 로고 -->
         <div class="logo--kwater"></div>
       </div>

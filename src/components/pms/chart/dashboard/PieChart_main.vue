@@ -43,25 +43,73 @@ export default {
         [THEME_KEY]: 'dark',
     },
     data: () => ({
-        // normalValue : this.$store.state.PmsModule.process.map((item) => item.normal).reduce((a, b) => a + b, 0)
-        // ,
-        // errValue : this.$store.state.PmsModule.process.map((item) => item.err).reduce((a, b) => a + b, 0)
-        // ,
         normalValue:[],
-        errrValue:[],
-        data :[]
-        ,
-        series : []
-        ,
-        trafficWay : []
-        ,
-        // normal : this.trafficWay.filter((data) => data.name === '정상')[0].value,
-        // error : this.trafficWay.filter((data) => data.name === '이상')[0].value,
-        normal : 0,
-        error : 0,
+        errValue:[],
+        trafficWay:[],
+        normal:{},
+        error:{},
         normalPercentage:0,
-        borderColor : ['#1464EF', '#ED1874'],
-        color : [
+        data:[],
+        borderColor: ['#1464EF', '#ED1874'],
+        color:[],
+        shadowColor:['#1464EF', '#ED1874'],
+        option:{},
+    })
+    ,
+    methods: {
+    //     setTrafficWay() {
+    //         for (var i = 0; i < this.trafficWay.length; i++) {
+    //             this.data.push({
+    //                 value: this.trafficWay[i].value,
+    //                 name: this.trafficWay[i].name,
+    //                 itemStyle: {
+    //                     normal: {
+    //                         borderWidth: 2,
+    //                         shadowBlur: 5,
+    //                         borderColor: this.borderColor[i],
+    //                         color: this.color[i],
+    //                         shadowColor: this.shadowColor[i],
+    //                     },
+    //                 },
+    //             });
+    //         }
+    setData(){
+        for (var i = 0; i < this.trafficWay.length; i++) {
+            this.data.push({
+                value: this.trafficWay[i].value,
+                name: this.trafficWay[i].name,
+                itemStyle: {
+                    normal: {
+                        borderWidth: 2,
+                        shadowBlur: 5,
+                        borderColor: this.borderColor[i],
+                        color: this.color[i],
+                        shadowColor: this.shadowColor[i],
+                    },
+                },
+            });
+        }
+      }
+    }
+    ,
+    mounted(){
+     // console.log(' $this.$store.state.PmsModule.PmsModule.process=>', this.$this.$store.state.PmsModule.PmsModule.process);
+     this.normalValue=this.$store.state.PmsModule.process.map((item) => item.normal).reduce((a, b) => a + b, 0);
+     this.errValue = this.$store.state.PmsModule.process.map((item) => item.err).reduce((a, b) => a + b, 0);
+     this.trafficWay = [
+            {
+                name: '정상',
+                value: this.normalValue,
+            },
+            {
+                name: '이상',
+                value: this.errValue,
+            },
+      ];
+      this.normal = this.trafficWay.filter((data) => data.name === '정상')[0].value;
+      this.error = this.trafficWay.filter((data) => data.name === '이상')[0].value;
+      this.normalPercentage = ((this.normal / (this.normal + this.error)) * 100).toFixed(0);
+      this.color = [
             new echarts.graphic.LinearGradient(0, 1, 0, 0, [
                 {
                     offset: 0,
@@ -82,164 +130,8 @@ export default {
                     color: '#f30e667c',
                 },
             ]),
-        ],
-        shadowColor : ['#1464EF', '#ED1874'],
-        option : {},
-      }
-    )
-    ,
-    methods: {
-        setTrafficWay() {
-            for (var i = 0; i < this.trafficWay.length; i++) {
-                this.data.push({
-                    value: this.trafficWay[i].value,
-                    name: this.trafficWay[i].name,
-                    itemStyle: {
-                        normal: {
-                            borderWidth: 2,
-                            shadowBlur: 5,
-                            borderColor: this.borderColor[i],
-                            color: this.color[i],
-                            shadowColor: this.shadowColor[i],
-                        },
-                    },
-                });
-            }
-      }
-    }
-    ,
-    mounted(){
-        this.normalPercentage=((this.normal / (this.normal + this.error)) * 100).toFixed(0);
-        console.log(this.normalPercentage);
-        this.normalValue = this.$store.state.PmsModule.process.map((item) => item.normal).reduce((a, b) => a + b, 0);
-        this.errValue = this.$store.state.PmsModule.process.map((item) => item.err).reduce((a, b) => a + b, 0);
-        this.normal= this.normalValue;
-        this.error = this.errValue;
-        this.trafficWay.push(
-            {
-                name: '정상',
-                value: this.normalValue,
-            });
-            this.trafficWay.push({
-                name: '이상',
-                value: this.errValue,
-            });
-        this.data.push({
-                value:this.normalValue,
-                name:'정상',
-                 itemStyle:{
-                       normal:{
-                         borderWidth: 2,
-                         shadowBlur: 5,
-                         borderColor: '#1464EF',
-                         color: this.color[0],
-                         shadowColor: '#1464EF',
-                 }
-            }
-        });
-        this.data.push(
-        {
-                 value:this.errValue,
-                 name:'이상',
-                 itemStyle:{
-                       normal:{
-                         borderWidth: 2,
-                         shadowBlur: 5,
-                         borderColor: '#ED1874',
-                         color: this.color[1],
-                         shadowColor: '#ED1874',
-                 }
-            }
-        }
-        );
-        this.series.push(
-            {
-                    type: 'liquidFill',
-                    radius: '60%',
-                    center: ['48%', '50%'],
-                    data: [
-                        this.normalPercentage * 0.01,
-                        this.normalPercentage * 0.01 - 0.1,
-                        this.normalPercentage * 0.01 - 0.25,
-                    ],
-                    backgroundStyle: {
-                        borderWidth: 1,
-                        color: '#191E36',
-                    },
-                    label: {
-                        normal: {
-                            formatter: '\n' + this.normalPercentage + '%',
-                            textStyle: {
-                                fontSize: 45,
-                                lineHeight: 30,
-                                textShadowColor: 'rgba(0,0,0,0.2)',
-                                textShadowBlur: 8,
-                                textShadowOffsetX: 2,
-                                textShadowOffsetY: 2,
-                            },
-                        },
-                    },
-                    outline: {
-                        show: false,
-                    },
-                }
-        );
-               this.series.push({
-                    type: 'pie',
-                    center: ['48%', '50%'],
-                    radius: ['65%', '80%'],
-                    hoverAnimation: false,
-                    data: this.data,
-                    itemStyle: {
-                        normal: {
-                            label: {
-                                show: true,
-                                position: 'outside',
-                                color: '#fff',
-                                fontSize: 16,
-                                lineHeight: 20,
-                                align: 'center',
-
-                                formatter: (params) => {
-                                    var percent = 0;
-                                    var total = 0;
-                                    for (
-                                        var i = 0;
-                                        i < this.trafficWay.length;
-                                        i++
-                                    ) {
-                                        total += this.trafficWay[i].value;
-                                    }
-                                    percent = (
-                                        (params.value / total) * 100
-                                    ).toFixed(0);
-                                    if (params.name !== '') {
-                                        return (
-                                            params.name +
-                                            '\n' +
-                                            percent +
-                                            '%' +
-                                            '\n' +
-                                            params.value +
-                                            '대'
-                                        );
-                                    } else {
-                                        return '';
-                                    }
-                                },
-                            },
-                            labelLine: {
-                                length: -10,
-                                length2: 80,
-                                show: true,
-                                lineStyle: {
-                                    width: 3,
-                                },
-                            },
-                        },
-                    },
-                }
-        );
+        ];
+        this.setData();
         this.option = {
             backgroundColor: 'rgba(0,0,0,0)',
             title: {
@@ -350,8 +242,6 @@ export default {
                 },
             ],
         };
-        this.setTrafficWay();
-        // console.log(' this.$store.state.PmsModule.process=>', this.$store.state.PmsModule.process);
 
     },
 };

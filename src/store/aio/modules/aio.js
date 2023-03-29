@@ -158,7 +158,7 @@ const state = {
   }
 
   const mutations = {
-    SET_OVERLAY (state, data) {
+    [SET_OVERLAY] (state, data) {
       state.overlay = data
     }
   }

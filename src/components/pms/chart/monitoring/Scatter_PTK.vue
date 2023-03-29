@@ -5,17 +5,44 @@
 </template>
 
 <script>
-import { reactive, computed, watch } from 'vue';
-import bgData from '@/assets/data/PTK.json';
+import bgData from '@/assets/pms/data/PTK.json';
 
 export default {
     props: ['data', 'flow_rate', 'pressure', 'color'],
-    setup(props) {
-        let dataLevel1 = [];
-        let dataLevel2 = [];
-        let dataLevel3 = [];
-
-        let level1CntP = bgData['Q_1'].length;
+    data: () => ({
+        dataLevel1 : [],
+        dataLevel2 : [],
+        dataLevel3 : [],
+        level1CntP : bgData['Q_1'].length,
+        level2CntP : bgData['Q_1'].length,
+        level3CntP : bgData['Q_3'].length,
+        dataLevel1_95 : [],
+        dataLevel1_90 : [],
+        dataLevel1_80 : [],
+        dataLevel1_70 : [],
+        dataLevel2_95 : [],
+        dataLevel2_90 : [],
+        dataLevel2_80 : [],
+        dataLevel2_70 : [],
+        dataLevel3_95 : [],
+        dataLevel3_90 : [],
+        dataLevel3_80 : [],
+        dataLevel3_70 : [],
+        level1Cnt : bgData['x_95_1'].length,
+        level2Cnt : bgData['x_95_2'].length,
+        level3Cnt : bgData['x_95_3'].length,
+        data: this.data,
+        flow_rate: this.flow_rate,
+        pressure: this.pressure,
+        color: this.color,
+    })
+    ,
+    method(){
+        colorSetting = (val) => {
+            if (val === 1) return '#ff9100';
+            if (val === 2) return '#47ff51';
+            if (val === 3) return '#0048ff';
+        },
         for (let i = 0; i < level1CntP; i++) {
             if (i % 20 == 0) {
                 let x = bgData['Q_1'][i];
@@ -24,7 +51,7 @@ export default {
                 dataLevel1.push(l_arr);
             }
         }
-        let level2CntP = bgData['Q_1'].length;
+        
         for (let i = 0; i < level2CntP; i++) {
             if (i % 20 == 0) {
                 let x = bgData['Q_2'][i];
@@ -33,7 +60,7 @@ export default {
                 dataLevel2.push(l_arr);
             }
         }
-        let level3CntP = bgData['Q_3'].length;
+        
         for (let i = 0; i < level3CntP; i++) {
             if (i % 20 == 0) {
                 let x = bgData['Q_3'][i];
@@ -43,34 +70,20 @@ export default {
             }
         }
 
-        let dataLevel1_95 = [];
-        let dataLevel1_90 = [];
-        let dataLevel1_80 = [];
-        let dataLevel1_70 = [];
-        let dataLevel2_95 = [];
-        let dataLevel2_90 = [];
-        let dataLevel2_80 = [];
-        let dataLevel2_70 = [];
-        let dataLevel3_95 = [];
-        let dataLevel3_90 = [];
-        let dataLevel3_80 = [];
-        let dataLevel3_70 = [];
-
-        let level1Cnt = bgData['x_95_1'].length;
+        
         for (let i = 0; i < level1Cnt; i++) {
             dataLevel1_95.push([bgData['x_95_1'][i], bgData['y_95_1'][i]]);
             dataLevel1_90.push([bgData['x_90_1'][i], bgData['y_90_1'][i]]);
             dataLevel1_80.push([bgData['x_80_1'][i], bgData['y_80_1'][i]]);
             dataLevel1_70.push([bgData['x_70_1'][i], bgData['y_70_1'][i]]);
         }
-        let level2Cnt = bgData['x_95_2'].length;
         for (let i = 0; i < level2Cnt; i++) {
             dataLevel2_95.push([bgData['x_95_2'][i], bgData['y_95_2'][i]]);
             dataLevel2_90.push([bgData['x_90_2'][i], bgData['y_90_2'][i]]);
             dataLevel2_80.push([bgData['x_80_2'][i], bgData['y_80_2'][i]]);
             dataLevel2_70.push([bgData['x_70_2'][i], bgData['y_70_2'][i]]);
         }
-        let level3Cnt = bgData['x_95_3'].length;
+        
         for (let i = 0; i < level3Cnt; i++) {
             dataLevel3_95.push([bgData['x_95_3'][i], bgData['y_95_3'][i]]);
             dataLevel3_90.push([bgData['x_90_3'][i], bgData['y_90_3'][i]]);
@@ -78,19 +91,7 @@ export default {
             dataLevel3_70.push([bgData['x_70_3'][i], bgData['y_70_3'][i]]);
         }
 
-        const colorSetting = (val) => {
-            if (val === 1) return '#ff9100';
-            if (val === 2) return '#47ff51';
-            if (val === 3) return '#0048ff';
-        };
-
-        const state = reactive({
-            data: computed(() => props.data),
-            flow_rate: computed(() => props.flow_rate),
-            pressure: computed(() => props.pressure),
-            color: computed(() => props.color),
-        });
-
+    }
         watch(state, () => {
             console.log('state.color :: ' + state.color);
             // state.flow_rate = [];
@@ -526,7 +527,7 @@ export default {
             ],
         });
 
-        return { option };
-    },
+    
+    
 };
 </script>
