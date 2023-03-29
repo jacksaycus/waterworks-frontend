@@ -8,6 +8,7 @@
 import moment from 'moment';
 
 export default {
+    name:'Linechart',
     props: [
         'title',
         'detailData1',
@@ -20,36 +21,23 @@ export default {
         'name4',
     ],
     data: () => ({
-        TITLE:this.title,
-        current1: this.detailData1,
-        current2: this.detailData2,
-        current3: this.detailData3,
-        current4: this.detailData4,
-        name1: this.name1,
-        name2: this.name2,
-        name3: this.name3,
-        name4: this.name4,
-        options:{},
+        option:{},
     })
     ,
-    watch: {
-        current1: function(newVal, oldVal){
-            option.series[2].data = newVal;
-        },
-        current2: function(newVal, oldVal){
-            option.series[3].data = newVal;
-        },
-        current3: function(newVal, oldVal){
-            option.series[4].data = newVal;
-        },
-        current4: function(newVal, oldVal){
-            option.series[5].data = newVal;
-        }
-        
-    }        
-    ,   
+    computed: {
+        current1(){return this.detailData1},
+        current2(){return this.detailData2},
+        current3(){return this.detailData3},
+        current4(){return this.detailData4},
+        // name1(){return this.name1},
+        // name2(){return this.name2},
+        // name3(){return this.name3},
+        // name4(){return this.name4},
+    }
+    ,
+    
     mounted(){
-      this.option = {
+        this.option = {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'axis',
@@ -82,7 +70,7 @@ export default {
                                     color: 'rgba(126,199,255,0)',
                                 },
                             ],
-                            global: false, //
+                            global: false, 
                         },
                     },
                 },
@@ -115,22 +103,10 @@ export default {
                     }
                     return l_str;
                 },
-                // formatter: (p) => {
-                //     return `현재값 : ${p[0].value} <br/> 일시 :  `;
-                // },
             },
             legend: {
-                // show: true,
-                // icon: 'roundRect',
                 type: 'scroll',
-                // orient: 'horizontal',
-                // bottom: 0,
                 show: true,
-                // pageTextStyle: {
-                //     color: '#fff',
-                // },
-                // pageIconColor: '#fff',
-                // pageIconSize: 8,
                 textStyle: {
                     color: '#fff',
                 },
@@ -141,13 +117,11 @@ export default {
                 left: '30',
                 right: '10',
                 bottom: 20,
-                // containLabel: true
             },
             xAxis: {
-                // type: 'category',
+           
                 type: 'time',
                 boundaryGap: false,
-                // splitNumber: 3,
                 axisLine: {
                     lineStyle: {
                         color: '#5D96C4',
@@ -280,48 +254,25 @@ export default {
                     },
                 },
                 {
-                    name: state.name1,
+                    name: this.name1,
                     type: 'line',
                     symbol: 'circle',
                     showAllSymbol: true,
                     symbolSize: 0,
                     smooth: true,
-                    // lineStyle: {
-                    //     normal: {
-                    //         width: 2,
-                    //         color: 'rgba(25,163,223,1)',
-                    //     },
-                    //     borderColor: 'rgba(0,0,0,.4)',
-                    // },
-                    // itemStyle: {
-                    //     color: 'rgba(25,163,223,1)',
-                    //     borderColor: '#646ace',
-                    //     borderWidth: 2,
-                    // },
                     tooltip: {
                         show: true,
                     },
                     data: [],
                 },
                 {
-                    name: state.name2,
+                    name: this.name2,
                     type: 'line',
                     symbol: 'circle',
                     showAllSymbol: true,
                     symbolSize: 0,
                     smooth: true,
-                    // lineStyle: {
-                    //     normal: {
-                    //         width: 2,
-                    //         color: 'rgba(25,163,223,1)',
-                    //     },
-                    //     borderColor: 'rgba(0,0,0,.4)',
-                    // },
-                    // itemStyle: {
-                    //     color: 'rgba(25,163,223,1)',
-                    //     borderColor: '#646ace',
-                    //     borderWidth: 2,
-                    // },
+                    
                     tooltip: {
                         show: true,
                     },
@@ -334,50 +285,54 @@ export default {
                     showAllSymbol: true,
                     symbolSize: 0,
                     smooth: true,
-                    // lineStyle: {
-                    //     normal: {
-                    //         width: 2,
-                    //         color: 'rgba(25,163,223,1)',
-                    //     },
-                    //     borderColor: 'rgba(0,0,0,.4)',
-                    // },
-                    // itemStyle: {
-                    //     color: 'rgba(25,163,223,1)',
-                    //     borderColor: '#646ace',
-                    //     borderWidth: 2,
-                    // },
                     tooltip: {
                         show: true,
                     },
                     data: [],
                 },
                 {
-                    name: this..name4,
+                    name: this.name4,
                     type: 'line',
                     symbol: 'circle',
                     showAllSymbol: true,
                     symbolSize: 0,
                     smooth: true,
-                    // lineStyle: {
-                    //     normal: {
-                    //         width: 2,
-                    //         color: 'rgba(25,163,223,1)',
-                    //     },
-                    //     borderColor: 'rgba(0,0,0,.4)',
-                    // },
-                    // itemStyle: {
-                    //     color: 'rgba(25,163,223,1)',
-                    //     borderColor: '#646ace',
-                    //     borderWidth: 2,
-                    // },
                     tooltip: {
                         show: true,
                     },
                     data: [],
                 },
             ],
-        }
-  }
+        };
+   }
+   ,
+//    watch: {
+//       current1: {
+//       immediate: true,
+//       handler(val) {
+//         this.option.series[2].data = val;
+//       },
+//     },
+//       current2: {
+//       immediate: true,
+//       handler(val) {
+//         this.option.series[3].data = val;
+//       },
+//     },
+//       current3: {
+//       immediate: true,
+//       handler(val) {
+//         this.option.series[4].data = val;
+//       },
+//      },
+//       current4: {
+//       immediate: true,
+//       handler(val) {
+//         this.option.series[5].data = val;
+//       },
+//     },
+//     }        
+//     ,   
         
 };
 </script>

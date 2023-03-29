@@ -7,7 +7,7 @@
         <div class="action-btn reset" v-on:click="selectReset()">
             reset
         </div>
-        <Header class="header" />
+        <!-- <Header class="header" /> -->
         <div class="content">
             <div class="content-left">
                 <div class="content-panel">
@@ -1048,10 +1048,7 @@
 <script>
 // import Header from '@/components/menu/Header.vue';
 import Frame from '@/components/pms/component/BoxFrame.vue';
-// import Linechart2 from '@/components/chart/monitoring/Linechart2.vue';
 import Linechart from '@/components/pms/chart/monitoring/Linechart_1.vue';
-// import Linechart from '@/components/chart/monitoring/Linechart_d4.vue';
-import { onMounted } from 'vue';
 import moment from 'moment';
 import axios from 'axios';
 import Scatter from '@/components/pms/chart/monitoring/Scatter_PTK.vue';
@@ -1083,11 +1080,11 @@ export default {
                 this.$store.state.PmsModule.monitor1.startDate = startDate;
                 this.$store.state.PmsModule.monitor1.endDate = endDate;
             }
-            store.dispatch('PmsModule/monitor1/runningInfo');
-            store.dispatch('PmsModule/monitor1/alarm');
-            store.dispatch('PmsModule/monitor1/handleGraphData');
-            store.dispatch('PmsModule/monitor1/flowPressure');
-            store.dispatch('PmsModule/monitor1/distribution');
+            this.$store.dispatch('PmsModule/monitor1/runningInfo');
+            this.$store.dispatch('PmsModule/monitor1/alarm');
+            this.$store.dispatch('PmsModule/monitor1/handleGraphData');
+            this.$store.dispatch('PmsModule/monitor1/flowPressure');
+            this.$store.dispatch('PmsModule/monitor1/distribution');
     }
     ,
     methods: {

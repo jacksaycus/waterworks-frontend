@@ -514,7 +514,8 @@ export default {
      */
     goEMSURL: function(url) {
       console.log(url)
-      this.$router.replace('/ems');
+      // this.$router.replace('/ems');
+      this.$router.replace(url);
       // if (this.$store.state.login.user.accessToken !== null) {
       //   window.open(SERVICE_URL.EMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
       // } else {
@@ -527,7 +528,7 @@ export default {
      */
     goPMSURL: function(url) {
       console.log(url);
-      this.$router.replace('/pms');
+      this.$router.replace(url);
       // if (this.$store.state.login.user.accessToken !== null) {
       //   window.open(SERVICE_URL.PMS + url +'?token=' + this.$store.state.login.user.accessToken, "_self")
       // } else {

@@ -8,104 +8,144 @@
 import bgData from '@/assets/pms/data/PTK.json';
 
 export default {
+    name : 'Scatter',
     props: ['data', 'flow_rate', 'pressure', 'color'],
-    data: () => ({
-        dataLevel1 : [],
-        dataLevel2 : [],
-        dataLevel3 : [],
-        level1CntP : bgData['Q_1'].length,
-        level2CntP : bgData['Q_1'].length,
-        level3CntP : bgData['Q_3'].length,
-        dataLevel1_95 : [],
-        dataLevel1_90 : [],
-        dataLevel1_80 : [],
-        dataLevel1_70 : [],
-        dataLevel2_95 : [],
-        dataLevel2_90 : [],
-        dataLevel2_80 : [],
-        dataLevel2_70 : [],
-        dataLevel3_95 : [],
-        dataLevel3_90 : [],
-        dataLevel3_80 : [],
-        dataLevel3_70 : [],
-        level1Cnt : bgData['x_95_1'].length,
-        level2Cnt : bgData['x_95_2'].length,
-        level3Cnt : bgData['x_95_3'].length,
-        data: this.data,
-        flow_rate: this.flow_rate,
-        pressure: this.pressure,
-        color: this.color,
-    })
+    data() {
+        return {
+        //    dataLevel1 : [],
+        //    dataLevel2 : [],
+        //    dataLevel3 : [],
+           level1CntP : bgData['Q_1'].length,
+           level2CntP : bgData['Q_1'].length,
+           level3CntP : bgData['Q_3'].length,
+           dataLevel1_95 : [],
+           dataLevel1_90 : [],
+           dataLevel1_80 : [],
+           dataLevel1_70 : [],
+           dataLevel2_95 : [],
+           dataLevel2_90 : [],
+           dataLevel2_80 : [],
+           dataLevel2_70 : [],
+           dataLevel3_95 : [],
+           dataLevel3_90 : [],
+           dataLevel3_80 : [],
+           dataLevel3_70 : [],
+           level1Cnt : bgData['x_95_1'].length,
+           level2Cnt : bgData['x_95_2'].length,
+           level3Cnt : bgData['x_95_3'].length,    
+           option:{},
+           dataLevel1:[],
+           dataLevel2:[],
+           dataLevel3:[],           
+        //    dat:[],
+    }
+   }
     ,
-    method(){
-        colorSetting = (val) => {
-            if (val === 1) return '#ff9100';
-            if (val === 2) return '#47ff51';
-            if (val === 3) return '#0048ff';
-        },
-        for (let i = 0; i < level1CntP; i++) {
-            if (i % 20 == 0) {
+    computed: {
+    //    dataLevel1() {
+    //      let temp=[];
+    //      for (let i = 0; i < this.level1CntP; i++) {
+    //        if (i % 20 == 0) {
+    //          let x = bgData['Q_1'][i];
+    //          let y = bgData['P_1'][i];
+    //          let l_arr = [x, y];
+    //          temp.push(l_arr);
+    //        }
+    //     }
+    //     return temp;
+    //    }
+    //    ,
+    //    dataLevel2() {
+    //     let temp=[];
+    //     for (let i = 0; i < this.level2CntP; i++) {
+    //         if (i % 20 == 0) {
+    //             let x = bgData['Q_2'][i];
+    //             let y = bgData['P_2'][i];
+    //             let l_arr = [x, y];
+    //             temp.push(l_arr);
+    //         }
+    //     }
+    //     return temp;
+    //    }
+    // ,
+    // dataLevel3() {
+    //     let temp=[];
+    //     for (let i = 0; i < this.level3CntP; i++) {
+    //         if (i % 20 == 0) {
+    //             let x = bgData['Q_3'][i];
+    //             let y = bgData['P_3'][i];
+    //             let l_arr = [x, y];
+    //             temp.push(l_arr);
+    //         }
+    //     }
+    //     return temp;
+    // }
+    // ,
+    // dat() { return this.data },
+    // flow_rate() {return this.flow_rate },
+    // pressure(){ return this.pressure },
+    // color(){ return this.color },
+    }    
+    ,    
+    methods: {
+        setDataLevel(){
+            for (let i = 0; i < this.level1Cnt; i++) {
+            this.dataLevel1_95.push([bgData['x_95_1'][i], bgData['y_95_1'][i]]);
+            this.dataLevel1_90.push([bgData['x_90_1'][i], bgData['y_90_1'][i]]);
+            this.dataLevel1_80.push([bgData['x_80_1'][i], bgData['y_80_1'][i]]);
+            this.dataLevel1_70.push([bgData['x_70_1'][i], bgData['y_70_1'][i]]);
+           }
+        
+            for (let i = 0; i < this.level2Cnt; i++) {
+                this.dataLevel2_95.push([bgData['x_95_2'][i], bgData['y_95_2'][i]]);
+                this.dataLevel2_90.push([bgData['x_90_2'][i], bgData['y_90_2'][i]]);
+                this.dataLevel2_80.push([bgData['x_80_2'][i], bgData['y_80_2'][i]]);
+                this.dataLevel2_70.push([bgData['x_70_2'][i], bgData['y_70_2'][i]]);
+            }
+            
+            for (let i = 0; i < this.level3Cnt; i++) {
+                this.dataLevel3_95.push([bgData['x_95_3'][i], bgData['y_95_3'][i]]);
+                this.dataLevel3_90.push([bgData['x_90_3'][i], bgData['y_90_3'][i]]);
+                this.dataLevel3_80.push([bgData['x_80_3'][i], bgData['y_80_3'][i]]);
+                this.dataLevel3_70.push([bgData['x_70_3'][i], bgData['y_70_3'][i]]);
+            }
+
+            for (let i = 0; i < this.level1CntP; i++) {
+              if (i % 20 == 0) {
                 let x = bgData['Q_1'][i];
                 let y = bgData['P_1'][i];
                 let l_arr = [x, y];
-                dataLevel1.push(l_arr);
-            }
-        }
-        
-        for (let i = 0; i < level2CntP; i++) {
-            if (i % 20 == 0) {
+                this.dataLevel1.push(l_arr);
+             }
+           }
+           for (let i = 0; i < this.level2CntP; i++) {
+              if (i % 20 == 0) {
                 let x = bgData['Q_2'][i];
                 let y = bgData['P_2'][i];
                 let l_arr = [x, y];
-                dataLevel2.push(l_arr);
+                this.dataLevel2.push(l_arr);
             }
-        }
-        
-        for (let i = 0; i < level3CntP; i++) {
-            if (i % 20 == 0) {
-                let x = bgData['Q_3'][i];
-                let y = bgData['P_3'][i];
-                let l_arr = [x, y];
-                dataLevel3.push(l_arr);
-            }
-        }
-
-        
-        for (let i = 0; i < level1Cnt; i++) {
-            dataLevel1_95.push([bgData['x_95_1'][i], bgData['y_95_1'][i]]);
-            dataLevel1_90.push([bgData['x_90_1'][i], bgData['y_90_1'][i]]);
-            dataLevel1_80.push([bgData['x_80_1'][i], bgData['y_80_1'][i]]);
-            dataLevel1_70.push([bgData['x_70_1'][i], bgData['y_70_1'][i]]);
-        }
-        for (let i = 0; i < level2Cnt; i++) {
-            dataLevel2_95.push([bgData['x_95_2'][i], bgData['y_95_2'][i]]);
-            dataLevel2_90.push([bgData['x_90_2'][i], bgData['y_90_2'][i]]);
-            dataLevel2_80.push([bgData['x_80_2'][i], bgData['y_80_2'][i]]);
-            dataLevel2_70.push([bgData['x_70_2'][i], bgData['y_70_2'][i]]);
-        }
-        
-        for (let i = 0; i < level3Cnt; i++) {
-            dataLevel3_95.push([bgData['x_95_3'][i], bgData['y_95_3'][i]]);
-            dataLevel3_90.push([bgData['x_90_3'][i], bgData['y_90_3'][i]]);
-            dataLevel3_80.push([bgData['x_80_3'][i], bgData['y_80_3'][i]]);
-            dataLevel3_70.push([bgData['x_70_3'][i], bgData['y_70_3'][i]]);
-        }
-
-    }
-        watch(state, () => {
-            console.log('state.color :: ' + state.color);
-            // state.flow_rate = [];
-            // state.pressure = [];
-            state.data = [];
-            option.series[15].data = state.data;
-            option.series[16].data =
-                state.data.length === 0
-                    ? []
-                    : [state.data[state.data.length - 1]];
-            option.series[16].itemStyle.color = colorSetting(state.color);
-        });
-
-        const option = reactive({
+           }
+           for (let i = 0; i < this.level3CntP; i++) {
+              if (i % 20 == 0) {
+                  let x = bgData['Q_3'][i];
+                  let y = bgData['P_3'][i];
+                  let l_arr = [x, y];
+                  this.dataLevel3.push(l_arr);
+              }
+           }
+         }
+         ,
+         colorSetting(val){
+            if (val === 1) return '#ff9100';
+            if (val === 2) return '#47ff51';
+            if (val === 3) return '#0048ff';
+         }
+     }
+     ,
+     mounted() {
+        this.setDataLevel();
+        this.option = {
             backgroundColor: 'rgba(0,0,0,0)',
             title: {
                 // text: 'Health Feature Space',
@@ -226,24 +266,9 @@ export default {
                 containLabel: true,
             },
             series: [
-                // {
-                //     name: '압력',
-                //     data: state.pressure,
-                //     type: 'scatter',
-                //     symbolSize: 2,
-                //     itemStyle: {
-                //         color: '#04E0F3',
-                //     },
-                //     large: true,
-                //     tooltip: {
-                //         formatter() {
-                //             return '';
-                //         },
-                //     },
-                // },
                 {
                     name: 'data',
-                    data: dataLevel1,
+                    data: this.dataLevel1,
                     type: 'scatter',
                     symbolSize: 1,
                     itemStyle: {
@@ -257,7 +282,7 @@ export default {
                 },
                 {
                     name: 'data',
-                    data: dataLevel2,
+                    data: this.dataLevel2,
                     type: 'scatter',
                     symbolSize: 1,
                     itemStyle: {
@@ -271,7 +296,7 @@ export default {
                 },
                 {
                     name: 'data',
-                    data: dataLevel3,
+                    data: this.dataLevel3,
                     type: 'scatter',
                     symbolSize: 1,
                     itemStyle: {
@@ -285,22 +310,15 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel1_95,
-                    // data: [
-                    // 	[-11.25606333903737, 5.7310041759318855],
-                    // 	[12.410229134821885, -6.316952550564456]
-                    // ],
+                    data: this.dataLevel1_95,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
                     lineStyle: {
                         width: 1,
-                        // color: 'rgba(64, 176, 235, 1)',
-                        // color: '#ff0000',
                         color: '#911F27',
                     },
                     areaStyle: {
-                        // color: '#ff000022',
                         color: '#911F2722',
                         opacity: 1,
                     },
@@ -311,7 +329,7 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel2_95,
+                    data: this.dataLevel2_95,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
@@ -330,7 +348,7 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel3_95,
+                    data: this.dataLevel3_95,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
@@ -349,14 +367,12 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel1_90,
+                    data: this.dataLevel1_90,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
                     lineStyle: {
                         width: 1,
-                        // color: 'rgba(64, 176, 235, 1)',
-                        // color: '#ff0000',
                         color: '#911F27',
                     },
                     tooltip: {
@@ -366,7 +382,7 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel2_90,
+                    data: this.dataLevel2_90,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
@@ -381,7 +397,7 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel3_90,
+                    data: this.dataLevel3_90,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
@@ -396,14 +412,12 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel1_80,
+                    data: this.dataLevel1_80,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
                     lineStyle: {
                         width: 1,
-                        // color: 'rgba(64, 176, 235, 1)',
-                        // color: '#ff0000',
                         color: '#911F27',
                     },
                     tooltip: {
@@ -413,7 +427,7 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel2_80,
+                    data: this.dataLevel2_80,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
@@ -428,7 +442,7 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel3_80,
+                    data: this.dataLevel3_80,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
@@ -443,14 +457,12 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel1_70,
+                    data: this.dataLevel1_70,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
                     lineStyle: {
                         width: 1,
-                        // color: 'rgba(64, 176, 235, 1)',
-                        // color: '#ff0000',
                         color: '#911F27',
                     },
                     tooltip: {
@@ -460,7 +472,7 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel2_70,
+                    data: this.dataLevel2_70,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
@@ -475,7 +487,7 @@ export default {
                 },
                 {
                     name: '',
-                    data: dataLevel3_70,
+                    data: this.dataLevel3_70,
                     showSymbol: false,
                     smooth: true,
                     type: 'line',
@@ -490,7 +502,7 @@ export default {
                 },
                 {
                     name: 'value',
-                    data: state.data,
+                    data: this.data,
                     type: 'scatter',
                     symbolSize: 1,
                     itemStyle: {
@@ -507,13 +519,13 @@ export default {
                 {
                     name: 'value2',
                     data:
-                        state.data.length !== 0
-                            ? [state.data[state.data.length - 1]]
+                        this.data.length !== 0
+                            ? [this.data[this.data.length - 1]]
                             : [],
                     type: 'scatter',
                     symbolSize: 10,
                     itemStyle: {
-                        color: colorSetting(state.color),
+                        color: this.colorSetting(this.color),
                         opacity: 1,
                     },
                     large: true,
@@ -525,9 +537,21 @@ export default {
                     animation: false,
                 },
             ],
-        });
-
-    
+        }
+     }
+     ,
+    //  watch:{
+    //     dat: {
+    //         immediate: true,
+    //         handler(val) {
+    //         this.option.series[15].data = val;
+    //         this.option.series[16].data = val.length === 0 ? [] : [val[val.length - 1]];
+    //         this.option.series[16].itemStyle.color = this.colorSetting(this.color);
+    //         }
+    //     }
+    //  }
+    //  ,
+       
     
 };
 </script>

@@ -33,9 +33,9 @@ const routes = [
     component: () => import('@/components/pms/dashboard/Dashboard'),
   },
   {
-    path: '/pms/monitor1',
+    path: '/monitor1',
     name: 'Monitor1',
-    component: () => import('@/components/pms/Monitor1.vue'),
+    component: () => import('@/components/pms/component/Monitor1.vue'),
   },
   {
     path: '/monitor4',

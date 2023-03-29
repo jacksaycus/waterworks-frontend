@@ -342,6 +342,7 @@ export default {
           icon: '$vuetify.icons.AoRw',
           text: '착수',
           model: false,
+          active: false,
           authority: USER_ROLE.USER,
           children: [
             {
@@ -484,13 +485,13 @@ export default {
           icon: '$vuetify.icons.AoSending',
           text: '송수',
           model: false,
-          authority: USER_ROLE.USER,
+          // authority: USER_ROLE.USER,
           children: [
             {
               icon: '$vuetify.icons.WhiteCircle',
               text: '송수관펌프',
               route: '/monitor1',
-              authority: USER_ROLE.USER,
+              // authority: USER_ROLE.USER,
             },
             {
               icon: '$vuetify.icons.WhiteCircle',

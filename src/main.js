@@ -24,13 +24,16 @@ import {
 } from 'echarts/renderers'
 import {
   BarChart,
-  PieChart
+  PieChart,
+  LineChart,
+  ScatterChart
 } from 'echarts/charts'
 import {
   GridComponent,
   TooltipComponent,
   TitleComponent,
-  LegendComponent
+  LegendComponent,
+  DataZoomComponent
 } from 'echarts/components'
 use([
   CanvasRenderer,
@@ -40,6 +43,9 @@ use([
   TitleComponent,
   TooltipComponent,
   LegendComponent,
+  DataZoomComponent,
+  LineChart,
+  ScatterChart,
 ])
 
 HighchartsMore(Highcharts)
