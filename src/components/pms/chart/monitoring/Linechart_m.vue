@@ -1,21 +1,22 @@
 <template>
-  <div className="chart">
-    <v-chart className="linechart" :option="option" autoresize/>
+  <div class ="chart">
+    <v-chart class="linechart" :option="option" autoresize/>
   </div>
 </template>
 
 <script>
 import * as echarts from 'echarts';
+import 'echarts/lib/chart/line'
 import moment from 'moment';
 
 export default {
   name: 'Linechart',
   props: ['elecData', 'max', 'threadHold'],
   data: () => ({
-    current: [],
-    max: 0,
-    threadHold: 0,
-    option: {}
+    // current: [],
+    //max: 0,
+    // threadHold: 0,
+    option: {},
   }),
   mounted() {
     this.option = {
@@ -186,7 +187,7 @@ export default {
         axisTick: {
           show: false,
         },
-        max: state.max,
+        max: Number(this.max),
       },
       dataZoom: [
         {
@@ -224,7 +225,7 @@ export default {
             },
             data: [
               {
-                yAxis: state.threadHold,
+                yAxis: Number(this.threadHold),
                 label: {
                   show: true,
                   position: 'end',
@@ -294,14 +295,18 @@ export default {
   computed: {
     // max: Number(this.max),
     // threadHold: Number(this.threadHold),
+    current(){ return this.elecData },
   },
 
-  // watch : {
-  //         state.current = [],
-  //         option.xAxis.data = [],
-  //         option.series[1].data = state.current,
-  //     }
-
+  watch : {
+    current: {
+      immediate: false,
+      handler(val) {
+        this.option.xAxis.data = [];
+        this.option.series[1].data = val;
+     }
+   }
+}
 
 }
 

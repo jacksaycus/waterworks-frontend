@@ -1,6 +1,6 @@
 <template>
     <div class="monitor-4">
-        <Header class="header" />
+        <!-- <Header class="header" /> -->
         <div class="content">
             <div class="content-left">
                 <img src="@/assets/pms/monitor-bg.png" class="panel-bg" />
@@ -104,7 +104,7 @@ import Linechart from '../chart/monitoring/Linechart_m.vue';
 import moment from 'moment';
 export default {
     components: {
-        Header,
+        // Header,
         Frame,
         Linechart,
     },
@@ -113,7 +113,7 @@ export default {
 }),
 methods: {
     visibleToggle() {
-        this.$store.state.alertVisible = !store.state.alertVisible;
+        this.$store.state.alertVisible = !this.$store.state.alertVisible;
         }
 
      ,
@@ -142,8 +142,8 @@ methods: {
                 this.$store.state.PmsModule.monitor4.startDate = startDate;
                 this.$store.state.PmsModule.monitor4.endDate = endDate;
             }
-            this.$store.dispatch('pms/monitor4/handleGraphData');
-            this.$store.dispatch('pms/monitor5/handleGraphData');
+            this.$store.dispatch('PmsModule/monitor4/handleGraphData');
+            this.$store.dispatch('PmsModule/monitor5/handleGraphData');
         }
 
 
