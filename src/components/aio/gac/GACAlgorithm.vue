@@ -115,8 +115,11 @@ export default {
       this.i_location_ti_set_max = event.target.value
     },
   },
+  created() {
+    this.$store.state.selectedBuildingIndex = 6;
+  }
+  ,
   mounted: function() {
-    this.$store.state.selectedBuildingIndex = 6
     this.$store.commit(SET_OVERLAY, true)
     Promise.all([
       this.$store.dispatch(GET_GAC_LATEST),

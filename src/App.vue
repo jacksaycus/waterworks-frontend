@@ -9,7 +9,8 @@
     <Drawer style="z-index:99999;"/>
     <AppBar/>
     <v-main :style="this.$store.state.aio.css.content">
-      <router-view class="view"></router-view>
+      <!-- <router-view class="view"></router-view> -->
+      <router-view></router-view>
     </v-main>
 </v-app>
 </template>
@@ -30,6 +31,6 @@ export default {
   
 };
 </script>
-<!-- <style lang="scss">
+<style lang="scss">
 @import "App.scss";
-</style> -->
+</style>

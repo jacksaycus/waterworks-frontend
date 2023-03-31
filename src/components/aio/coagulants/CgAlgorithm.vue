@@ -183,8 +183,12 @@ export default {
    * 마운트시 실행되는 함수
    * 약품 공정에 필요한 API를 주기적으로 요청
    */
-  mounted: function () {
-    this.$store.state.selectedBuildingIndex = 2
+  created() {
+    this.$store.state.selectedBuildingIndex = 2;
+  }
+  ,
+  mounted() {
+    
     // this.$store.commit('aio/SET_OVERLAY', true)
     // Promise.all([
     //   this.$store.dispatch(GET_COAGULANT_LATEST),

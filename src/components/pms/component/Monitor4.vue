@@ -113,7 +113,7 @@ export default {
 }),
 methods: {
     visibleToggle() {
-        this.$store.state.alertVisible = !this.$store.state.alertVisible;
+        this.$store.state.monitor4.alertVisible = !this.$store.state.PmsModule.monitor4.alertVisible;
         }
 
      ,

@@ -16,50 +16,63 @@
 </template>
 <script>
 export default {
+  name:'TopNavigator',
   data: () => ({
   }),
+  methods:{
+
+  }
+  ,
+  mounted() {
+    // alert(this.$store.state.selectedBuildingIndex)
+  }
+  ,
   computed: {
     // 선택된 공정에 따라 활성화된 이미지 반환
     ImageURL() {
       switch(this.$store.state.selectedBuildingIndex) {
         case 1:
           return {
-            backgroundImage: `url(${require("@/assets/splashdown/top_splashdown_background.png")})`
+            backgroundImage: `url(${require("../../../assets/splashdown/top_splashdown_background.png")})`
           }
         case 2:
           return {
-            backgroundImage: `url(${require("@/assets/drugInjection/cg_main_top_background.png")})`
+            backgroundImage: `url(${require("../../../assets/drugInjection/cg_main_top_background.png")})`
           }
         case 3:
           return {
-            backgroundImage: `url(${require("@/assets/mixingTank/top_mixingtank_background.png")})`
+            backgroundImage: `url(${require("../../../assets/mixingTank/top_mixingtank_background.png")})`
           }
         case 4:
           return {
-            backgroundImage: `url(${require("@/assets/sedimentation/top_center_background.png")})`
+            backgroundImage: `url(${require("../../../assets/sedimentation/top_center_background.png")})`
           }
         case 5:
           return {
-            backgroundImage: `url(${require("@/assets/percolation/top_percolation_background.png")})`
+            backgroundImage: `url(${require("../../../assets/percolation/top_percolation_background.png")})`
           }
         case 6:
           return {
-            backgroundImage: `url(${require("@/assets/gacpercolation/top_center_background.png")})`
+            backgroundImage: `url(${require("../../../assets/gacpercolation/top_center_background.png")})`
           }
         case 7:
           return {
-            backgroundImage: `url(${require("@/assets/disinfection/top_disinfection_background.png")})`
+            backgroundImage: `url(${require("../../../assets/disinfection/top_disinfection_background.png")})`
           }
         case 11:
           return {
-            backgroundImage: `url(${require("@/assets/ozone/top_center_background.png")})`
+            backgroundImage: `url(${require("../../../assets/ozone/top_center_background.png")})`
           }
         default:
-          return "../../assets/splashdown/top_splashdown_background.png"
+          return "../../../assets/splashdown/top_splashdown_background.png"
       }
     }
   }
+  ,
+  
 }
+
+
 </script>
 <style lang="scss">
 .top-navi-main{

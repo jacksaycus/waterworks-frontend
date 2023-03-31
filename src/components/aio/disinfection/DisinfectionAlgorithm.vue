@@ -99,15 +99,19 @@ export default {
   },
   methods: {
     onClickAICheckbox: function(index, expectedValue, disinfectionIndex) {
-      if( this.$store.state.login.user.accessToken !== null ) {
+      //if( this.$store.state.login.user.accessToken !== null ) {
         this.$store.state.selectedBuildingIndex = index
         this.$store.state.dialog.aiMode.disinfectionIndex = disinfectionIndex
         this.$store.dispatch('dialog/' + OPEN_AI_MODE_DIALOG, expectedValue)
-      }
+      //}
     }
   },
+  created(){
+    this.$store.state.selectedBuildingIndex = 7;
+  }
+  ,
   mounted: function () {
-    this.$store.state.selectedBuildingIndex = 7
+    
     // this.$store.commit(SET_OVERLAY, true)
     // Promise.all([
     //   this.$store.dispatch(GET_DISINFECTION_LATEST),

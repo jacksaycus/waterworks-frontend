@@ -43,6 +43,11 @@ const routes = [
     component: () => import('@/components/pms/component/Monitor4'),
   },
   {
+    path: '/detail4',
+    name: 'Detail4',
+    component: () => import('@/components/pms/component/Detail4.vue'),
+  },
+  {
     path: '*',
     component: () => import('@/views/NotFound'),
   },

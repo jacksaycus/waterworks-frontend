@@ -119,28 +119,32 @@ export default {
       this.f_location_ti_set_max = event.target.value
     },
   },
+  created(){
+    this.$store.state.selectedBuildingIndex = 5;
+  }
+  ,
   /**
    * 마운트시 실행되는 함수
    * 필요한 API를 주기적으로 요청함
    */
   mounted: function() {
-    this.$store.state.selectedBuildingIndex = 5
-    this.$store.commit(SET_OVERLAY, true)
-    Promise.all([
-      this.$store.dispatch(GET_FILTER_LATEST),
-      this.$store.dispatch(GET_FILTER_SCHEDULE)
-    ]).finally(() => {
-      this.$store.commit(SET_OVERLAY, false)
-    })
+    // this.$store.state.selectedBuildingIndex = 5
+    // this.$store.commit(SET_OVERLAY, true)
+    // Promise.all([
+    //   this.$store.dispatch(GET_FILTER_LATEST),
+    //   this.$store.dispatch(GET_FILTER_SCHEDULE)
+    // ]).finally(() => {
+    //   this.$store.commit(SET_OVERLAY, false)
+    // })
     
-    this.timer = setInterval(() => {
-      this.$store.dispatch(GET_FILTER_LATEST),
-      this.$store.dispatch(GET_FILTER_SCHEDULE)
-    }, 60 * 1000)
+    // this.timer = setInterval(() => {
+    //   this.$store.dispatch(GET_FILTER_LATEST),
+    //   this.$store.dispatch(GET_FILTER_SCHEDULE)
+    // }, 60 * 1000)
   },
-  destroyed: function () {
-    clearInterval(this.timer)
-  },
+  // destroyed: function () {
+  //   clearInterval(this.timer)
+  // },
   watch: {
     f_location_ti_set_max: function(newVal, oldVal) {
       // console.log(newVal, oldVal)

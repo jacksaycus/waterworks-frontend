@@ -67,12 +67,16 @@ export default {
     //   }
     // },
   },
+  created() {
+    this.$store.state.selectedBuildingIndex = 3;
+  }
+  ,
   /**
    * 마운트시 실행되는 함수
    * 혼화응집에 필요한 API를 주기적으로 요청함
    */
   mounted: function() {
-    this.$store.state.selectedBuildingIndex = 3
+    
    // this.$store.commit('aio/SET_OVERLAY', true)
     Promise.all([
       this.$store.dispatch(GET_MIXING_LATEST),

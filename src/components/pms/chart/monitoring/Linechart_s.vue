@@ -1,7 +1,7 @@
 <template>
     <div class="chart">
         <div class="titlebox">
-            <img src="@/assets/subtitleicon.svg" alt="" />
+            <img src="@/assets/pms/subtitleicon.svg" alt="" />
             <span>{{ TITLE }}</span>
         </div>
         <v-chart class="linechart" :option="option" autoresize />
@@ -9,28 +9,29 @@
 </template>
 
 <script>
-// import * as echarts from 'echarts';
-import { useStore } from 'vuex';
-import { ref, reactive, computed, watch } from 'vue';
 import moment from 'moment';
-
 export default {
+    name:'Linechart_s',
     props: ['title', 'detailData', 'name1'],
-    setup(props) {
-        const store = useStore();
-        const TITLE = ref(props.title);
-        const state = reactive({
-            current: computed(() => props.detailData),
-            name1: computed(() => props.name1),
-        });
-
-        watch(state, () => {
-            // console.log('state:::');
-            state.current = [];
-            option.series[1].data = state.current;
-        });
-
-        const option = reactive({
+    data: () => ({
+      option:{},
+    }),
+    computed: {
+        current(){return this.detailData},
+        TITLE(){return this.title}
+        // name1(){return this.name1},
+    },        
+    watch : {
+    current: {
+      immediate: false,
+      handler(val) {
+        this.option.series[1].data = val;
+     }
+   }
+   }
+   ,
+   mounted() {
+     this.option = {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {
                 trigger: 'axis',
@@ -95,22 +96,10 @@ export default {
                     }
                     return l_str;
                 },
-                // formatter: (p) => {
-                //     return `현재값 : ${p[0].value} <br/> 일시 :  `;
-                // },
             },
             legend: {
-                // show: true,
-                // icon: 'roundRect',
                 type: 'scroll',
-                // orient: 'horizontal',
-                // bottom: 0,
                 show: false,
-                // pageTextStyle: {
-                //     color: '#fff',
-                // },
-                // pageIconColor: '#fff',
-                // pageIconSize: 8,
                 textStyle: {
                     color: '#fff',
                 },
@@ -121,18 +110,15 @@ export default {
                 left: '60',
                 right: '60',
                 bottom: '30',
-                // containLabel: true
             },
             xAxis: {
                 name: '시간',
-                // type: 'category',
                 type: 'time',
                 boundaryGap: false,
                 nameTextStyle: {
                     fontSize: 14,
                     fontWeight: 'normal',
                 },
-                // splitNumber: 3,
                 axisLine: {
                     lineStyle: {
                         color: '#5D96C4',
@@ -197,7 +183,6 @@ export default {
                     show: true,
                     textStyle: {
                         color: '#5D96C4',
-                        // padding: 2,
                         fontSize: 16,
                     },
                 },
@@ -205,9 +190,6 @@ export default {
                     show: false,
                 },
                 max: 1.5,
-                // max: function(value) {
-                //     return Math.floor(value.max * 100) / 100 + 1;
-                // },
             },
             dataZoom: [
                 {
@@ -218,7 +200,6 @@ export default {
             ],
             textStyle: {
                 color: '#5D96C4',
-                // padding: 2,
                 fontSize: 16,
                 fontWeight: 'bold',
             },
@@ -253,7 +234,6 @@ export default {
                                         return '임계선';
                                     },
                                     color: '#f00',
-                                    // padding: 2,
                                     fontSize: 14,
                                 },
                             },
@@ -261,33 +241,20 @@ export default {
                     },
                 },
                 {
-                    name: state.name1,
+                    name: this.name1,
                     type: 'line',
                     symbol: 'circle',
                     showAllSymbol: true,
                     symbolSize: 0,
                     smooth: true,
-                    // lineStyle: {
-                    //     normal: {
-                    //         width: 2,
-                    //         color: 'rgba(25,163,223,1)',
-                    //     },
-                    //     borderColor: 'rgba(0,0,0,.4)',
-                    // },
-                    // itemStyle: {
-                    //     color: 'rgba(25,163,223,1)',
-                    //     borderColor: '#646ace',
-                    //     borderWidth: 2,
-                    // },
                     tooltip: {
                         show: true,
                     },
                     data: [],
                 },
             ],
-        });
+        }
+    }
 
-        return { store, option, TITLE };
-    },
 };
 </script>

@@ -146,29 +146,33 @@ export default {
    * 마운트 되는 경우 실행되는 함수
    * 1분 간격으로 API 요청하는 타이머 설정
    */
+   created() {
+    this.$store.state.selectedBuildingIndex = 1;
+  }
+  ,
   mounted: function() {
-    this.$store.state.selectedBuildingIndex = 1
-    this.$store.commit('aio/SET_OVERLAY', true)
-    Promise.all([
-      this.$store.dispatch(GET_RECEIVING_LATEST),
-      this.$store.dispatch(PUT_RECEIVING_HISTORY_FLOW_OUT),
-      this.$store.dispatch(PUT_CLEAR_HISTORY_LEVEL)
-    ]).finally(() => {
-      this.$store.commit('aio/SET_OVERLAY', false)
-    })
     
-    this.timer = setInterval(() => {
-      this.$store.dispatch(GET_RECEIVING_LATEST),
-      this.$store.dispatch(PUT_RECEIVING_HISTORY_FLOW_OUT),
-      this.$store.dispatch(PUT_CLEAR_HISTORY_LEVEL)
-    }, 60 * 1000)
+    // this.$store.commit('aio/SET_OVERLAY', true)
+    // Promise.all([
+    //   this.$store.dispatch(GET_RECEIVING_LATEST),
+    //   this.$store.dispatch(PUT_RECEIVING_HISTORY_FLOW_OUT),
+    //   this.$store.dispatch(PUT_CLEAR_HISTORY_LEVEL)
+    // ]).finally(() => {
+    //   this.$store.commit('aio/SET_OVERLAY', false)
+    // })
+    
+    // this.timer = setInterval(() => {
+    //   this.$store.dispatch(GET_RECEIVING_LATEST),
+    //   this.$store.dispatch(PUT_RECEIVING_HISTORY_FLOW_OUT),
+    //   this.$store.dispatch(PUT_CLEAR_HISTORY_LEVEL)
+    // }, 60 * 1000)
   },
   /**
    * 헤제되는 경우 타이머 해제
    */
-  destroyed: function () {
-    clearInterval(this.timer)
-  }
+  // destroyed: function () {
+  //   clearInterval(this.timer)
+  // }
 }
 </script>
 

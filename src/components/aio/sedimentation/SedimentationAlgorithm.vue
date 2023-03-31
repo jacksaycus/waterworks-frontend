@@ -74,12 +74,16 @@ export default {
       }
     }
   },
+  created() {
+    this.$store.state.selectedBuildingIndex = 4;
+  }
+  ,
   /**
    * 마운트시 실행되는 함수
    * 침전 공정에 필요한 API를 주기적으로 요청
    */
   mounted: function() {
-    this.$store.state.selectedBuildingIndex = 4
+    
     // this.$store.commit('aio/SET_OVERLAY', true)
     // Promise.all([
     //   // this.$store.dispatch(GET_SEDIMENTATION_LATEST),

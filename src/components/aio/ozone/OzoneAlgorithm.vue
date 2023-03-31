@@ -55,8 +55,12 @@ export default {
       }
     },
   },
+  created() {
+    this.$store.state.selectedBuildingIndex = 11;
+  }
+  ,
   mounted: function() {
-    this.$store.state.selectedBuildingIndex = 11
+    
     // this.$store.commit(SET_OVERLAY, true)
     // Promise.all([
     //   this.$store.dispatch(GET_OZONE_LATEST),

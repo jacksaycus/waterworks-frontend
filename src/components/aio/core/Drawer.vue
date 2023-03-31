@@ -59,10 +59,18 @@
                   v-if="item.children"
                   append-icon=""
                   :key="item.key"
+                  color="#00b9ed"
+                  v-model="item.active"
+                  @click="goPMSURL(item.route)"
+                >
+                <!-- <v-list-group
+                  v-if="item.children"
+                  append-icon=""
+                  :key="item.key"
                   :to="item.route"
                   color="#00b9ed"
                   v-model="item.active"
-                >
+                > -->
                   <template v-slot:activator>
                     <v-list-item-action>
                       <v-icon>{{ item.icon }}</v-icon>
@@ -527,6 +535,7 @@ export default {
      * 로그인 여부에 따라 AccessToken을 넘김
      */
     goPMSURL: function(url) {
+      if(url=== undefined)return;
       console.log(url);
       this.$router.replace(url);
       // if (this.$store.state.login.user.accessToken !== null) {

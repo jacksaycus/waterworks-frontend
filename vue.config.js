@@ -2,6 +2,9 @@ const path = require('path');
 const vueSrc = "./src";
 
 module.exports = {
+  transpileDependencies: [
+    'vuetify'
+  ],
   configureWebpack: {
     resolve: {
       alias: {
