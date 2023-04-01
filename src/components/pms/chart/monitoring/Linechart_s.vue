@@ -11,14 +11,16 @@
 <script>
 import moment from 'moment';
 export default {
-    name:'Linechart_s',
+    name:'Linechart',
     props: ['title', 'detailData', 'name1'],
     data: () => ({
       option:{},
+      current:[],
+      TITLE:'',
     }),
     computed: {
-        current(){return this.detailData},
-        TITLE(){return this.title}
+        // current(){return this.detailData},
+        // TITLE(){return this.title}
         // name1(){return this.name1},
     },        
     watch : {
@@ -31,6 +33,8 @@ export default {
    }
    ,
    mounted() {
+    this.current=this.detailData;
+    this.TITLE=this.title;
      this.option = {
             backgroundColor: 'rgba(0,0,0,0)',
             tooltip: {

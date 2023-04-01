@@ -13,47 +13,47 @@ import ExportingData from "highcharts/modules/export-data"
 import OfflineExporting from "highcharts/modules/offline-exporting"
 import xrangeInit from 'highcharts/modules/xrange'
 import stockInit from 'highcharts/modules/stock'
-
 // import quasarUserOptions from './quasar-user-options';
 // import { Quasar } from 'quasar';
+import "echarts";
 import ECharts from 'vue-echarts'
-import { use } from "echarts/core"
+// import { use } from "echarts/core"
 
-import {
-  CanvasRenderer
-} from 'echarts/renderers'
-import {
-  BarChart,
-  PieChart,
-  LineChart,
-  ScatterChart
-} from 'echarts/charts'
-import {
-  GridComponent,
-  TooltipComponent,
-  TitleComponent,
-  LegendComponent,
-  DataZoomComponent
-} from 'echarts/components'
-use([
-  CanvasRenderer,
-  BarChart,
-  PieChart,
-  GridComponent,
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-  DataZoomComponent,
-  LineChart,
-  ScatterChart,
-])
+// import {
+//   CanvasRenderer
+// } from 'echarts/renderers'
+// import {
+//   BarChart,
+//   PieChart,
+//   LineChart,
+//   ScatterChart
+// } from 'echarts/charts'
+// import {
+//   GridComponent,
+//   TooltipComponent,
+//   TitleComponent,
+//   LegendComponent,
+//   DataZoomComponent
+// } from 'echarts/components'
+// use([
+//   CanvasRenderer,
+//   BarChart,
+//   PieChart,
+//   GridComponent,
+//   TitleComponent,
+//   TooltipComponent,
+//   LegendComponent,
+//   DataZoomComponent,
+//   LineChart,
+//   ScatterChart,
+// ])
 
-HighchartsMore(Highcharts)
-xrangeInit(Highcharts)
-stockInit(Highcharts)
-Exporting(Highcharts)
-ExportingData(Highcharts)
-OfflineExporting(Highcharts)
+// HighchartsMore(Highcharts)
+// xrangeInit(Highcharts)
+// stockInit(Highcharts)
+// Exporting(Highcharts)
+// ExportingData(Highcharts)
+// OfflineExporting(Highcharts)
 
 Vue.use(Vuesax);
 

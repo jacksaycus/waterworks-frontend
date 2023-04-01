@@ -21,30 +21,29 @@
                         </q-avatar>
                     </template>
                 </q-select> -->
-                <v-menu
-                    transition="slide-y-transition"
-                    bottom
-                    >
-                    <template v-slot:activator="{ on }">
+                <div class="text-center">
+                    <v-menu offset-y >
+                    <template v-slot:activator="{ on, attrs }">
                         <v-btn
-                        class="purple"
                         color="primary"
                         dark
+                        v-bind="attrs"
                         v-on="on"
                         >
-                        Slide Y Transition
+                        {{ menutitle }}
                         </v-btn>
                     </template>
                     <v-list>
-                        <v-list-tile
-                        v-for="(item, i) in items"
-                        :key="i"
-                        @click=""
+                        <v-list-item
+                        v-for="(item, index) in options"
+                        :key="index"
+                        @click="selectModel(item)"
                         >
-                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                        </v-list-tile>
+                        <v-list-item-title>{{ item }}</v-list-item-title>
+                        </v-list-item>
                     </v-list>
                     </v-menu>
+                </div>
 
                 <div class="back-btn" v-on:click="back()">
                     <span> ← Back</span>
@@ -65,16 +64,16 @@
                             v-model="menu1"
                             :close-on-content-click="false"
                             :nudge-right="40"
-                            lazy
+                            
                             transition="scale-transition"
                             offset-y
-                            full-width
+                            
                             min-width="290px"
                         >
                             <template v-slot:activator="{ on }">
                             <v-text-field
                                 v-model="startStr"
-                                prepend-icon="    "
+                               
                                 readonly
                                 v-on="on"
                             ></v-text-field>
@@ -82,28 +81,30 @@
                             <v-date-picker v-model="startStr" @input="menu2 = false" @click="datePop"></v-date-picker>
                         </v-menu>
                         </v-flex>    
-                        <span>~</span>
+                        <span>&nbsp;&nbsp;</span>
                         <!-- <input
                             @click="datePop"
                             readonly
                             :value="endStr"
                         /> -->
-                       
+                        <v-flex xs12 sm6 md1>
+                            
+                        </v-flex>   
                         <v-flex xs12 sm6 md4>  
                         <v-menu
                             v-model="menu2"
                             :close-on-content-click="false"
                             :nudge-right="40"
-                            lazy
+                            
                             transition="scale-transition"
                             offset-y
-                            full-width
+                            
                             min-width="290px"
                         >
                             <template v-slot:activator="{ on }">
                             <v-text-field
                                 v-model="endStr"
-                                prepend-icon="    "
+                                
                                 readonly
                                 v-on="on"
                             ></v-text-field>
@@ -206,8 +207,10 @@ export default {
         { title: 'Click Me' },
         { title: 'Click Me' },
         { title: 'Click Me 2' }
-      ]
+      ],
+      menutitle:'',
     }),
+    
     computed: {
         options(){ 
             let list = [];
@@ -223,6 +226,8 @@ export default {
         detailInfo() {return this.$store.getters.PmsModule.monitor4['PmsModule/monitor4/detailInfo']},
     },
     mounted() {
+        console.log('options',this.options);
+        this.menutitle=this.options[0];
         //console.log('this.$store.state.PmsModule.monitor4',this.$store.state.PmsModule.monitor4);
             this.model = this.$store.state.PmsModule.monitor4.selectModel;
             let currentTime = new Date();
@@ -273,6 +278,7 @@ export default {
         }
         ,
         selectModel(value) {
+            this.menutitle=value;
             let select = this.$store.state.PmsModule.monitor4.modelList.filter(
                 (v) => v.title === value
             );
@@ -294,4 +300,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+ .tile {
+    margin: 5px;
+    border-radius: 4px;
+    
+  }
+  .tile:hover {
+    background: green;
+  }
+  .tile:active {
+    background: yellow;
+  }
+</style>

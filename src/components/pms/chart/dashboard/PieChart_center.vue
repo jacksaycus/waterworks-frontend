@@ -6,7 +6,7 @@
 
 <script>
 import * as echarts from 'echarts';
-import VChart, { THEME_KEY } from 'vue-echarts';
+// import VChart, { THEME_KEY } from 'vue-echarts';
 import { defineComponent, watch } from 'vue';
 import { useStore } from "vuex";
 

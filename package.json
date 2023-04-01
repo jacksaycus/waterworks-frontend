@@ -60,7 +60,7 @@
     "sass-loader": "10.1.0",
     "vue-cli-plugin-vuetify": "^2.5.8",
     "vue-template-compiler": "^2.7.14",
-    "vuetify-loader": "^1.9.2"
+    "vuetify-loader": "1.9.2"
   },
   "lint-staged": {
     "*.{js,vue}": [
