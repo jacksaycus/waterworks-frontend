@@ -48,12 +48,12 @@ import ECharts from 'vue-echarts'
 //   ScatterChart,
 // ])
 
-// HighchartsMore(Highcharts)
-// xrangeInit(Highcharts)
-// stockInit(Highcharts)
-// Exporting(Highcharts)
-// ExportingData(Highcharts)
-// OfflineExporting(Highcharts)
+HighchartsMore(Highcharts)
+xrangeInit(Highcharts)
+stockInit(Highcharts)
+Exporting(Highcharts)
+ExportingData(Highcharts)
+OfflineExporting(Highcharts)
 
 Vue.use(Vuesax);
 
